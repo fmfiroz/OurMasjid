@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/UltraLight_Ash"
+    tools:context="pnpmsjm.com.bd.ourmasjid_1.Omorbani">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/Ash"
+                android:orientation="vertical"
+                android:padding="00dp">
+                //Head
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="05dp"
+                    android:orientation="vertical"
+                    android:background="@color/Black">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/TextDharaNanme"
+                        android:textColor="@color/Yellow"
+                        android:text="@string/omorbani"/>
+
+
+                </LinearLayout>
+
+                //Body
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/Background">
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:gravity="center"
+                                style="@style/TextBody"
+                                android:text="@string/bani"
+                                android:textAlignment="center"
+                                android:textSize="18dp"
+                                android:textColor="@color/Black"
+                                android:textStyle="bold" />
+
+
+
+                        </LinearLayout>
+                    </ScrollView>
+
+
+                </LinearLayout>
+
+
+
+
+
+
+            </LinearLayout>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

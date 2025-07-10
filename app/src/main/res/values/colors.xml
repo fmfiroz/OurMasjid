@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    // My Colour
+    <color name="Black">#000000</color>
+    <color name="White">#FFFFFF</color>
+    <color name="Gray">#828282</color>
+    <color name="Red">#FF0000</color>
+    <color name="Green">#00FF00</color>
+    <color name="Blue">#0000FF</color>
+    <color name="Cyan">#00AEEF</color>
+    <color name="Magenta">#EC008C</color>
+    <color name="Yellow">#FFF200</color>
+    <color name="Yellow_20">#FFFCD5</color>
+    <color name="Cyan_20">#C7EAFB</color>
+    <color name="Magenta_20">#FAD5E5</color>
+    <color name="Yellow_50">#FFF799</color>
+    <color name="Cyan_50">#6DCFF6</color>
+    <color name="Magenta_50">#F49AC1</color>
+    <color name="Green_with_80_Black">#002A00</color>
+    <color name="Red_with_80_Black">#520000</color>
+    <color name="Blue_with_80_Black">#000031</color>
+    <color name="Background">#009D9B</color>
+    <color name="Dark_Ash">#4D4D4D</color>
+    <color name="Ash">#808080</color>
+    <color name="Light_Ash">#BDBDBD</color>
+    <color name="UltraLight_Ash">#E6E6E6</color>
+    <color name="White_Background">#FAFAFA</color>
+    <color name="Red_with_20_Black">#D83135</color>
+    <color name="Light_White">#F1F1F1</color>
+
+
+
+
+
+
+
+</resources>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/UltraLight_Ash"
+    tools:context="pnpmsjm.com.bd.ourmasjid_1.Ghosona">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/Ash"
+                android:orientation="vertical"
+                android:padding="00dp">
+                //Head
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="05dp"
+                    android:orientation="vertical"
+                    android:background="@color/Black">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        style="@style/TextDharaNanme"
+                        android:textColor="@color/Yellow"
+                        android:text="@string/ghosona"/>
+
+
+                </LinearLayout>
+
+                //Body
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@color/Background">
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:textSize="18dp"
+                                style="@style/TextBody"
+                                android:textColor="@color/Black"
+                                android:text="@string/ghosona1"/>
+                            <ImageView
+                                android:layout_width="80dp"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/paloan"/>
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:textSize="18dp"
+                                style="@style/TextBody"
+                                android:textStyle="bold"
+                                android:textColor="@color/Black"
+                                android:text="@string/sovapoti"/>
+
+
+
+                        </LinearLayout>
+                    </ScrollView>
+
+
+                </LinearLayout>
+
+
+
+
+
+
+            </LinearLayout>
+
+
+
+
+
+</RelativeLayout>

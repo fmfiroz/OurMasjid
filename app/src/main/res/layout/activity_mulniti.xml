@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/UltraLight_Ash"
+    tools:context="pnpmsjm.com.bd.ourmasjid_1.Mulniti">
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/Ash"
+                android:orientation="vertical"
+                android:padding="00dp">
+                //Head
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="05dp"
+                    android:orientation="vertical"
+                    android:background="@color/Black">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        style="@style/TextDharaNanme"
+                        android:textColor="@color/Yellow"
+                        android:text="@string/mulniti"/>
+
+
+                </LinearLayout>
+
+                //Body
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:background="@color/Background">
+                    <ScrollView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="10dp"
+                                android:gravity="center"
+                                android:textSize="18dp"
+                                android:textColor="@color/Black"
+                                style="@style/TextBody"
+                                android:text="@string/bismillah1"/>
+
+
+
+                        </LinearLayout>
+                    </ScrollView>
+
+
+                </LinearLayout>
+
+
+
+
+
+
+            </LinearLayout>
+
+
+    //developer
+
+</RelativeLayout>
