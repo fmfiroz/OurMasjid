@@ -9,8 +9,6 @@
     android:background="@color/Light_White"
     tools:context="pnpmsjm.com.bd.ourmasjid_1.MainActivity">
 
-
-
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
