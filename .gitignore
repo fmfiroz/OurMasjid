@@ -1,9 +1,20 @@
+# Gradle files
+.gradle/
+build/
+
+# Local config
+local.properties
+
+# IntelliJ/Android Studio
+.idea/
 *.iml
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
+
+# Keystore (Very sensitive!)
+*.jks
+
+# Mac junk
 .DS_Store
-/build
-/captures
-.externalNativeBuild
+
+# NDK/Native
+.cxx/
+.externalNativeBuild/
