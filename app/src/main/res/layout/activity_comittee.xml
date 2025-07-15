@@ -8,9 +8,8 @@
     tools:context="pnpmsjm.com.bd.ourmasjid_1.Comittee">
 
     <androidx.recyclerview.widget.RecyclerView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
+public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
 
     private List<Member> memberList;
 
-    public Adapter(List<Member> memberList) {
+    public MemberAdapter(List<Member> memberList) {
         this.memberList = memberList;
     }
 
@@ -34,7 +34,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         holder.tvName.setText(member.getName());
         holder.tvMobile.setText(member.getMobile_no());
         holder.tvDescription.setText(member.getDescription());
-        holder.tvDescription.setVisibility(View.GONE);
+        holder.imgPhoto.setVisibility(View.GONE);
 
         holder.tvName.setOnClickListener(v -> {
             if (holder.tvDescription.getVisibility() == View.GONE) {

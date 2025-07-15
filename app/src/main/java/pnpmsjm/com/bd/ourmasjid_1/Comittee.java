@@ -1,5 +1,6 @@
 package pnpmsjm.com.bd.ourmasjid_1;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,7 +8,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -20,9 +27,9 @@ import java.util.List;
 public class Comittee extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private Adapter adapter;
+    private MemberAdapter adapter;
     private List<Member> memberList;
-    private FirebaseFirestore db;
+    private DatabaseReference dbRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,28 +40,26 @@ public class Comittee extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         memberList = new ArrayList<>();
-        adapter = new Adapter(memberList);
+        adapter = new MemberAdapter(memberList);
         recyclerView.setAdapter(adapter);
 
-        db = FirebaseFirestore.getInstance();
+        dbRef = FirebaseDatabase.getInstance().getReference("members");
 
-        db.collection("comiti")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value,
-                                        @Nullable FirebaseFirestoreException error) {
-                        if (error != null) {
-                            Log.w("Firestore", "Listen failed.", error);
-                            return;
-                        }
+        dbRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                memberList.clear();
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Member member = dataSnapshot.getValue(Member.class);
+                    memberList.add(member);
+                }
+                adapter.notifyDataSetChanged();
+            }
 
-                        memberList.clear();
-                        for (QueryDocumentSnapshot doc : value) {
-                            Member member = doc.toObject(Member.class);
-                            memberList.add(member);
-                        }
-                        adapter.notifyDataSetChanged();
-                    }
-                });
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Comittee.this, "Error loading data", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
