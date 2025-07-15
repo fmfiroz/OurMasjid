@@ -57,7 +57,6 @@
         <activity android:name=".Dhara_18" android:exported="false" />
         <activity android:name=".Dhara_20" android:exported="false" />
         <activity android:name=".Dhara_21" android:exported="false" />
-        <activity android:name=".Uposdesta" android:exported="false" />
         <activity android:name=".Others_1" android:exported="false" />
         <activity android:name=".Ghosona" android:exported="false" />
         <activity android:name=".Mulniti" android:exported="false" />

@@ -26,16 +26,15 @@ import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
 
+
 public class MainActivity extends AppCompatActivity {
 
-    private InterstitialAd mInterstitialAd;
 
     String uriString;
-    ImageView call_sovapoti, call_secratery, fb_share, myfb_share;
-    public static TextView donaate1, donaate2, donaate3, donaate4, donaate5, developer_toast, ghosona, mulniti, omorbani, gothontontro, gothontontro2, onumodon, comiti, upodesta,
+    ImageView call_secratery;
+    public static TextView donaate1, donaate2, donaate3, donaate4, donaate5, developer_toast, ghosona, mulniti, omorbani, gothontontro, gothontontro2, onumodon, comiti,
             dhara1, dhara2, dhara3, dhara4, dhara5, dhara6, dhara7, dhara8, dhara9, dhara10, dhara11, dhara12, dhara13, dhara14, dhara15, dhara16, dhara17, dhara18, dhara19, dhara20, dhara21, dhara22;
 
-    private AdView adView;
 
     public void init() {
         donaate1 = findViewById(R.id.donaate1);
@@ -51,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         gothontontro2 = findViewById(R.id.gothontontro2);
         onumodon = findViewById(R.id.onumodon);
         comiti = findViewById(R.id.comiti);
-        upodesta = findViewById(R.id.upodesta);
         dhara1 = findViewById(R.id.dhara1);
         dhara2 = findViewById(R.id.dhara2);
         dhara3 = findViewById(R.id.dhara3);
@@ -84,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
         omorbani.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Omorbani.class)));
         onumodon.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Onumodon.class)));
         comiti.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Comittee.class)));
-        upodesta.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Uposdesta.class)));
         dhara1.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_1.class)));
         dhara2.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_2.class)));
         dhara3.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_3.class)));
@@ -124,46 +121,14 @@ public class MainActivity extends AppCompatActivity {
         MobileAds.initialize(this, initializationStatus -> {});
 
 
-        // Load Interstitial Ad (new API)
-        AdRequest adRequest = new AdRequest.Builder().build();
-        InterstitialAd.load(this,
-                "ca-app-pub-6626454304064681/3082638466",
-                adRequest,
-                new InterstitialAdLoadCallback() {
-                    @Override
-                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
-                        mInterstitialAd = interstitialAd;
-                        Log.i("AdMob", "Interstitial Ad Loaded");
-                        // Uncomment below to show ad immediately:
-                        // mInterstitialAd.show(MainActivity.this);
-                    }
 
-                    @Override
-                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-                        mInterstitialAd = null;
-                        Log.e("AdMob", "Failed to load interstitial ad: " + loadAdError.getMessage());
-                    }
-                });
 
-        // Banner AdView from XML
-        adView = findViewById(R.id.adView);
-        adView.loadAd(adRequest);
 
         // Views and Listeners
-        call_sovapoti = findViewById(R.id.call_sovapoti);
         call_secratery = findViewById(R.id.call_secratery);
-        fb_share = findViewById(R.id.fb_share);
-        myfb_share = findViewById(R.id.myfb);
 
         init();
 
-        // WebView myWebView = findViewById(R.id.mywebview);
-        // myWebView.loadUrl("https://www.facebook.com/Firoz-Mahmud-1938856869775917");
-
-        fb_share.setOnClickListener(v -> {
-            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/Firoz-Mahmud-1938856869775917"));
-            startActivity(intent);
-        });
 
         View bottomSheet = findViewById(R.id.design_bottom_sheet);
         final BottomSheetBehavior<View> behavior = BottomSheetBehavior.from(bottomSheet);
@@ -196,23 +161,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void fb_shares(View v) {
-        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        uriString = "https://play.google.com/store/apps/details?id=pnpmsjm.com.bd.ourmasjid_1";
-        sharingIntent.putExtra(Intent.EXTRA_TEXT, uriString);
-        sharingIntent.setPackage("com.facebook.katana");
-        startActivity(sharingIntent);
-    }
 
-    public void myfb_shares(View v) {
-        Intent sharingIntent = new Intent(Intent.ACTION_SEND);
-        sharingIntent.setType("text/plain");
-        uriString = "https://www.facebook.com/Firoz-Mahmud-1938856869775917/";
-        sharingIntent.putExtra(Intent.EXTRA_TEXT, uriString);
-        sharingIntent.setPackage("com.facebook.katana");
-        startActivity(sharingIntent);
-    }
+
 
     public void don1(View v) {
         Toast.makeText(this, "ব্যাংকের মাধ্যমে দান করুন অথবা সভাপতি/সেক্রেটারীর সঙ্গে যোগাযোগ করুন।", Toast.LENGTH_LONG).show();
@@ -221,18 +171,6 @@ public class MainActivity extends AppCompatActivity {
     public void don3(View v) { don1(v); }
     public void don4(View v) { don1(v); }
     public void don5(View v) { don1(v); }
-
-    // Sovapoti 01758-898048
-    public void sovapoti_calling(View v) {
-        Intent callIntent = new Intent(Intent.ACTION_CALL);
-        callIntent.setData(Uri.parse("tel:01758898048"));
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
-            return;
-        }
-        startActivity(callIntent);
-        Toast.makeText(this, "আপনি সভাপতিকে ফোন দিয়েছেন।", Toast.LENGTH_LONG).show();
-    }
 
     // Soho-sovapoti 01711187317
     public void cosovapoti_calling(View v) {
@@ -268,6 +206,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, "কল করার অনুমতি বাতিল হয়েছে।", Toast.LENGTH_SHORT).show();
             }
+
         }
     }
 
