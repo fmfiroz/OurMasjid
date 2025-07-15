@@ -23,9 +23,9 @@
               <option name="connection">
                 <ConnectionSetting>
                   <option name="appId" value="pnpmsjm.com.bd.ourmasjid_1" />
-                  <option name="mobileSdkAppId" value="1:568565219237:android:0e127a46ba09e4b368324c" />
-                  <option name="projectId" value="our-masjid-75487" />
-                  <option name="projectNumber" value="568565219237" />
+                  <option name="mobileSdkAppId" value="1:1011950257909:android:c1a9aa5450f99d007c67bc" />
+                  <option name="projectId" value="ourmasjid-1" />
+                  <option name="projectNumber" value="1011950257909" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
