@@ -32,8 +32,8 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Member member = memberList.get(position);
         holder.tvName.setText(member.getName());
-        holder.tvMobile.setText(member.getMobile_no());
-        holder.tvDescription.setText(member.getDescription());
+        holder.tvMobile.setText(member.getMobile_No());
+        holder.tvDescription.setText(member.getDesignation());
         holder.imgPhoto.setVisibility(View.GONE);
 
         holder.tvName.setOnClickListener(v -> {
@@ -44,8 +44,8 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
             }
         });
 
-        if (member.getPhoto() != null && !member.getPhoto().isEmpty()) {
-            Picasso.get().load(member.getPhoto()).into(holder.imgPhoto);
+        if (member.getPurl() != null && !member.getPurl().isEmpty()) {
+            Picasso.get().load(member.getPurl()).into(holder.imgPhoto);
         }
     }
 

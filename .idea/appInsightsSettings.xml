@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="pnpmsjm.com.ourmasjid" />
+                  <option name="mobileSdkAppId" value="1:734696757697:android:3c06fbc985f43fd5353740" />
+                  <option name="projectId" value="ourmasjid-8caa1" />
+                  <option name="projectNumber" value="734696757697" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
