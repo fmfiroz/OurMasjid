@@ -1,5 +1,6 @@
 package pnpmsjm.com.ourmasjid;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,14 +10,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
 public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHolder> {
 
+    private Context context;
     private List<Members> membersList;
 
-    public MembersAdapter(List<Members> memberList) {
+    public MembersAdapter(Context context, List<Members> memberList) {
+        this.context = context;
         this.membersList = memberList;
     }
 
@@ -33,19 +37,20 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
         Members member = membersList.get(position);
         holder.tvName.setText(member.getName());
         holder.tvMobile.setText(member.getMobile_No());
-        holder.tvDescription.setText(member.getDesignation());
+        holder.tvDesignation.setText(member.getDesignation());
         holder.imgPhoto.setVisibility(View.GONE);
 
         holder.tvName.setOnClickListener(v -> {
-            if (holder.tvDescription.getVisibility() == View.GONE) {
-                holder.tvDescription.setVisibility(View.VISIBLE);
+            if (holder.tvDesignation.getVisibility() == View.GONE) {
+                holder.tvDesignation.setVisibility(View.VISIBLE);
             } else {
-                holder.tvDescription.setVisibility(View.GONE);
+                holder.tvDesignation.setVisibility(View.GONE);
             }
         });
 
         if (member.getPurl() != null && !member.getPurl().isEmpty()) {
             Picasso.get().load(member.getPurl()).into(holder.imgPhoto);
+            holder.imgPhoto.setVisibility(View.VISIBLE);
         }
     }
 
@@ -55,13 +60,13 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvName, tvDescription, tvMobile;
+        TextView tvName, tvDesignation, tvMobile;
         ImageView imgPhoto;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvName = itemView.findViewById(R.id.tvName);
-            tvDescription = itemView.findViewById(R.id.tvDescription);
+            tvDesignation = itemView.findViewById(R.id.tvDesignation);
             tvMobile = itemView.findViewById(R.id.tvMobile);
             imgPhoto = itemView.findViewById(R.id.imgPhoto);
         }
