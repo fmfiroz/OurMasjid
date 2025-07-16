@@ -39,7 +39,7 @@
         <activity android:name="pnpmsjm.com.ourmasjid.Dhara_3" android:exported="false" />
         <activity android:name="pnpmsjm.com.ourmasjid.Dhara_4" android:exported="false" />
         <activity android:name="pnpmsjm.com.ourmasjid.Dhara_10" android:exported="false" />
-        <activity android:name="pnpmsjm.com.ourmasjid.Comittee" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Committee" android:exported="false" />
         <activity android:name="pnpmsjm.com.ourmasjid.Dhara_22" android:exported="false" />
         <activity android:name="pnpmsjm.com.ourmasjid.Dhara_2" android:exported="false" />
         <activity android:name="pnpmsjm.com.ourmasjid.Dhara_5" android:exported="false" />
