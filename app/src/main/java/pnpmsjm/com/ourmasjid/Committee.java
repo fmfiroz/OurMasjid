@@ -17,11 +17,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Comittee extends AppCompatActivity {
+public class Committee extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private MemberAdapter adapter;
-    private List<Member> memberList;
+    private MembersAdapter adapter;
+    private List<Members> membersList;
     private DatabaseReference dbRef;
 
     @Override
@@ -32,26 +32,26 @@ public class Comittee extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        memberList = new ArrayList<>();
-        adapter = new MemberAdapter(memberList);
+        membersList = new ArrayList<>();
+        adapter = new MembersAdapter(membersList);
         recyclerView.setAdapter(adapter);
 
-        dbRef = FirebaseDatabase.getInstance().getReference("members");
+        dbRef = FirebaseDatabase.getInstance().getReference("Committee");
 
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                memberList.clear();
+                membersList.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Member member = dataSnapshot.getValue(Member.class);
-                    memberList.add(member);
+                    Members members = dataSnapshot.getValue(Members.class);
+                    membersList.add(members);
                 }
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Comittee.this, "Error loading data", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Committee.this, "Error loading data", Toast.LENGTH_SHORT).show();
             }
         });
     }

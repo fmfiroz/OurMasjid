@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         gothontontro2.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, GothonTontro_1.class)));
         omorbani.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Omorbani.class)));
         onumodon.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Onumodon.class)));
-        comiti.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Comittee.class)));
+        comiti.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Committee.class)));
         dhara1.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_1.class)));
         dhara2.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_2.class)));
         dhara3.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_3.class)));

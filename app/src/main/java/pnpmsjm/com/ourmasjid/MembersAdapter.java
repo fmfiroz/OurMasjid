@@ -12,25 +12,25 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
-public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder> {
+public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHolder> {
 
-    private List<Member> memberList;
+    private List<Members> membersList;
 
-    public MemberAdapter(List<Member> memberList) {
-        this.memberList = memberList;
+    public MembersAdapter(List<Members> memberList) {
+        this.membersList = memberList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_member, parent, false);
+                .inflate(R.layout.item_members, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Member member = memberList.get(position);
+        Members member = membersList.get(position);
         holder.tvName.setText(member.getName());
         holder.tvMobile.setText(member.getMobile_No());
         holder.tvDescription.setText(member.getDesignation());
@@ -51,7 +51,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MemberAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return memberList.size();
+        return membersList.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

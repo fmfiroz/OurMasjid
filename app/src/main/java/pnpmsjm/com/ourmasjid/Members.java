@@ -1,16 +1,16 @@
 package pnpmsjm.com.ourmasjid;
 
-public class Member {
+public class Members {
     private String Name;
     private String Designation;
     private String Mobile_No;
     private String Purl;
 
-    public Member() {
+    public Members() {
         // Firestore এর জন্য ডিফল্ট কনস্ট্রাক্টর
     }
 
-    public Member(String Name, String Designation, String Mobile_No, String Purl) {
+    public Members(String Name, String Designation, String Mobile_No, String Purl) {
         this.Name = Name;
         this.Designation = Designation;
         this.Mobile_No = Mobile_No;
