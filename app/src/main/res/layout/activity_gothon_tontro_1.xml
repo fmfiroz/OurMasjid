@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="pnpmsjm.com.bd.ourmasjid_1.GothonTontro_1">
+    tools:context="pnpmsjm.com.bd.ourmasjid_1.pnpmsjm.com.ourmasjid_1.GothonTontro_1">
     //Head
     <RelativeLayout
         android:id="@+id/list_heading"

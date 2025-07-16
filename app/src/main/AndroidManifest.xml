@@ -24,7 +24,7 @@
             android:value="ca-app-pub-6626454304064681~3880591107"/> 
 
         <activity
-            android:name=".SplashActivity"
+            android:name="pnpmsjm.com.ourmasjid.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,36 +32,36 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".MainActivity" android:exported="false" />
-        <activity android:name=".GothonTontro_1" android:exported="false" />
-        <activity android:name=".Dhara_1" android:exported="false" />
-        <activity android:name=".Dhara_19" android:exported="false" />
-        <activity android:name=".Dhara_3" android:exported="false" />
-        <activity android:name=".Dhara_4" android:exported="false" />
-        <activity android:name=".Dhara_10" android:exported="false" />
-        <activity android:name=".Comittee" android:exported="false" />
-        <activity android:name=".Dhara_22" android:exported="false" />
-        <activity android:name=".Dhara_2" android:exported="false" />
-        <activity android:name=".Dhara_5" android:exported="false" />
-        <activity android:name=".Dhara_6" android:exported="false" />
-        <activity android:name=".Dhara_7" android:exported="false" />
-        <activity android:name=".Dhara_8" android:exported="false" />
-        <activity android:name=".Dhara_9" android:exported="false" />
-        <activity android:name=".Dhara_11" android:exported="false" />
-        <activity android:name=".Dhara_12" android:exported="false" />
-        <activity android:name=".Dhara_13" android:exported="false" />
-        <activity android:name=".Dhara_14" android:exported="false" />
-        <activity android:name=".Dhara_15" android:exported="false" />
-        <activity android:name=".Dhara_16" android:exported="false" />
-        <activity android:name=".Dhara_17" android:exported="false" />
-        <activity android:name=".Dhara_18" android:exported="false" />
-        <activity android:name=".Dhara_20" android:exported="false" />
-        <activity android:name=".Dhara_21" android:exported="false" />
-        <activity android:name=".Others_1" android:exported="false" />
-        <activity android:name=".Ghosona" android:exported="false" />
-        <activity android:name=".Mulniti" android:exported="false" />
-        <activity android:name=".Omorbani" android:exported="false" />
-        <activity android:name=".Onumodon" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.MainActivity" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.GothonTontro_1" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_1" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_19" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_3" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_4" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_10" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Comittee" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_22" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_2" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_5" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_6" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_7" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_8" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_9" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_11" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_12" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_13" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_14" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_15" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_16" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_17" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_18" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_20" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Dhara_21" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Others_1" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Ghosona" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Mulniti" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Omorbani" android:exported="false" />
+        <activity android:name="pnpmsjm.com.ourmasjid.Onumodon" android:exported="false" />
 
     </application>
 

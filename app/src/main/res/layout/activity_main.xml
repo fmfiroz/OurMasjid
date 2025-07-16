@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/Light_White"
-    tools:context="pnpmsjm.com.bd.ourmasjid_1.MainActivity">
+    tools:context="pnpmsjm.com.bd.ourmasjid_1.pnpmsjm.com.ourmasjid_1.MainActivity">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/UltraLight_Ash"
-    tools:context="pnpmsjm.com.bd.ourmasjid_1.Mulniti">
+    tools:context="pnpmsjm.com.bd.ourmasjid_1.pnpmsjm.com.ourmasjid_1.Mulniti">
 
 
 

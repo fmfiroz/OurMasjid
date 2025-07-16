@@ -1,21 +1,22 @@
 {
   "project_info": {
-    "project_number": "1011950257909",
-    "project_id": "ourmasjid-1",
-    "storage_bucket": "ourmasjid-1.firebasestorage.app"
+    "project_number": "734696757697",
+    "firebase_url": "https://ourmasjid-8caa1-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "ourmasjid-8caa1",
+    "storage_bucket": "ourmasjid-8caa1.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1011950257909:android:c1a9aa5450f99d007c67bc",
+        "mobilesdk_app_id": "1:734696757697:android:3c06fbc985f43fd5353740",
         "android_client_info": {
-          "package_name": "pnpmsjm.com.bd.ourmasjid_1"
+          "package_name": "pnpmsjm.com.ourmasjid"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBQhaslaczBeKv4XCHEuecp_S1jdnxi0CQ"
+          "current_key": "AIzaSyCcCERbWprQXvdozKzETHkRxviNReYcvhM"
         }
       ],
       "services": {

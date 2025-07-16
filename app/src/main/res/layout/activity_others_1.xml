@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/Light_White"
-    tools:context="pnpmsjm.com.bd.ourmasjid_1.Others_1">
+    tools:context="pnpmsjm.com.bd.ourmasjid_1.pnpmsjm.com.ourmasjid_1.Others_1">
 
 
     <TextView

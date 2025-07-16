@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="20"
-    tools:context="pnpmsjm.com.bd.ourmasjid_1.Dhara_21">
+    tools:context="pnpmsjm.com.ourmasjid.Dhara_21">
 
     <LinearLayout
         android:layout_width="match_parent"
