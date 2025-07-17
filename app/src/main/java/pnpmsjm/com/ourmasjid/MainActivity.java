@@ -6,11 +6,18 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +25,14 @@ import java.util.Arrays;
 
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -26,7 +41,13 @@ public class MainActivity extends AppCompatActivity {
     String uriString;
     ImageView call_secratery;
     public TextView donaate1, donaate2, donaate3, donaate4, donaate5, developer_toast, ghosona, mulniti, omorbani, gothontontro, gothontontro2, onumodon, comiti,
-            dhara1, dhara2, dhara3, dhara4, dhara5, dhara6, dhara7, dhara8, dhara9, dhara10, dhara11, dhara12, dhara13, dhara14, dhara15, dhara16, dhara17, dhara18, dhara19, dhara20, dhara21, dhara22;
+            dhara1, dhara2, dhara3, dhara4, dhara5, dhara6, dhara7, dhara8, dhara9, dhara10, dhara11, dhara12, dhara13, dhara14, dhara15, dhara16, dhara17, dhara18, dhara19, dhara20, dhara21, dhara22, fajrTime, dhuhrTime, asrTime, maghribTime, ishaTime, jumaTime;;
+
+    private EditText emailInput, passwordInput;
+    private Button loginButton;
+    private FirebaseAuth mAuth;
+
+    private DatabaseReference mDatabase;
 
 
     public void init() {
@@ -43,28 +64,6 @@ public class MainActivity extends AppCompatActivity {
         gothontontro2 = findViewById(R.id.gothontontro2);
         onumodon = findViewById(R.id.onumodon);
         comiti = findViewById(R.id.comiti);
-        dhara1 = findViewById(R.id.dhara1);
-        dhara2 = findViewById(R.id.dhara2);
-        dhara3 = findViewById(R.id.dhara3);
-        dhara4 = findViewById(R.id.dhara4);
-        dhara5 = findViewById(R.id.dhara5);
-        dhara6 = findViewById(R.id.dhara6);
-        dhara7 = findViewById(R.id.dhara7);
-        dhara8 = findViewById(R.id.dhara8);
-        dhara9 = findViewById(R.id.dhara9);
-        dhara10 = findViewById(R.id.dhara10);
-        dhara11 = findViewById(R.id.dhara11);
-        dhara12 = findViewById(R.id.dhara12);
-        dhara13 = findViewById(R.id.dhara13);
-        dhara14 = findViewById(R.id.dhara14);
-        dhara15 = findViewById(R.id.dhara15);
-        dhara16 = findViewById(R.id.dhara16);
-        dhara17 = findViewById(R.id.dhara17);
-        dhara18 = findViewById(R.id.dhara18);
-        dhara19 = findViewById(R.id.dhara19);
-        dhara20 = findViewById(R.id.dhara20);
-        dhara21 = findViewById(R.id.dhara21);
-        dhara22 = findViewById(R.id.dhara22);
 
         //Intent Listeners
         developer_toast.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Others_1.class)));
@@ -75,34 +74,91 @@ public class MainActivity extends AppCompatActivity {
         omorbani.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Omorbani.class)));
         onumodon.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Onumodon.class)));
         comiti.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Committee.class)));
-        dhara1.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_1.class)));
-        dhara2.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_2.class)));
-        dhara3.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_3.class)));
-        dhara4.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_4.class)));
-        dhara5.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_5.class)));
-        dhara6.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_6.class)));
-        dhara7.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_7.class)));
-        dhara8.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_8.class)));
-        dhara9.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_9.class)));
-        dhara10.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_10.class)));
-        dhara11.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_11.class)));
-        dhara12.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_12.class)));
-        dhara13.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_13.class)));
-        dhara14.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_14.class)));
-        dhara15.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_15.class)));
-        dhara16.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_16.class)));
-        dhara17.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_17.class)));
-        dhara18.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_18.class)));
-        dhara19.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_19.class)));
-        dhara20.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_20.class)));
-        dhara21.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_21.class)));
-        dhara22.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Dhara_22.class)));
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // UI উপাদানগুলি ইনিশিয়ালাইজ করুন
+        fajrTime = findViewById(R.id.fajrTime);
+        dhuhrTime = findViewById(R.id.dhuhrTime);
+        asrTime = findViewById(R.id.asrTime);
+        maghribTime = findViewById(R.id.maghribTime);
+        ishaTime = findViewById(R.id.ishaTime);
+        jumaTime = findViewById(R.id.jumaTime);
+
+        // Firebase Realtime Database রেফারেন্স পান
+        mDatabase = FirebaseDatabase.getInstance().getReference("prayer_times");
+
+        // ডেটা পড়ার জন্য ValueEventListener যোগ করুন
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // যখন ডেটা পরিবর্তন হয়, তখন এই মেথড কল হয়
+                if (dataSnapshot.exists()) {
+                    String fajr = dataSnapshot.child("fajr").getValue(String.class);
+                    String dhuhr = dataSnapshot.child("dhuhr").getValue(String.class);
+                    String asr = dataSnapshot.child("asr").getValue(String.class);
+                    String maghrib = dataSnapshot.child("maghrib").getValue(String.class);
+                    String isha = dataSnapshot.child("isha").getValue(String.class);
+                    String juma = dataSnapshot.child("juma").getValue(String.class);
+
+                    // TextView গুলিতে ডেটা সেট করুন
+                    fajrTime.setText("ফজর: " + fajr);
+                    dhuhrTime.setText("যোহর: " + dhuhr);
+                    asrTime.setText("আসর: " + asr);
+                    maghribTime.setText("মাগরিব: " + maghrib);
+                    ishaTime.setText("এশা: " + isha);
+                    jumaTime.setText("জুমআ: " + juma);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // ডেটা পড়তে ব্যর্থ হলে এখানে হ্যান্ডেল করুন
+                // Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        });
+
+        emailInput = findViewById(R.id.emailInput);
+        passwordInput = findViewById(R.id.passwordInput);
+        loginButton = findViewById(R.id.loginButton);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String email = emailInput.getText().toString().trim();
+                String password = passwordInput.getText().toString().trim();
+
+                if (TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+                    Toast.makeText(MainActivity.this, "ইমেল এবং পাসওয়ার্ড দিন", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                mAuth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    // লগইন সফল
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    Toast.makeText(MainActivity.this, "লগইন সফল: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                                    // নামাজের সময় পরিবর্তনের স্ক্রিনে যান
+                                    startActivity(new Intent(MainActivity.this, UpdatePrayerTimesActivity.class));
+                                    finish(); // লগইন স্ক্রিন বন্ধ করুন
+                                } else {
+                                    // লগইন ব্যর্থ
+                                    Toast.makeText(MainActivity.this, "লগইন ব্যর্থ: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
 
         // 🔹 STEP 1: Test device ID সেট করা
         RequestConfiguration configuration = new RequestConfiguration.Builder()

@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/Light_White"
-    tools:context="pnpmsjm.com.bd.ourmasjid_1.pnpmsjm.com.ourmasjid_1.MainActivity">
+    tools:context="pnpmsjm.com.ourmasjid.MainActivity">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nestedScrollView"
@@ -166,337 +166,61 @@
                                 android:orientation="horizontal"
                                 android:weightSum="5">
 
-                                <LinearLayout
-                                    android:layout_width="0dp"
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="3"
+                                android:orientation="vertical"
+                                android:padding="1dp"
+                                android:weightSum="5">
+                                <TextView
+                                    android:id="@+id/fajrTime"
+                                    android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_weight="3"
-                                    android:orientation="vertical"
-                                    android:padding="1dp"
-                                    android:weightSum="5">
+                                    android:text="ফজর: লোড হচ্ছে..."
+                                    android:textSize="20sp"
+                                    android:layout_marginBottom="8dp"/>
 
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1"
-                                        android:orientation="horizontal"
-                                        android:padding="1dp"
-                                        android:weightSum="5">
+                                <TextView
+                                    android:id="@+id/dhuhrTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="যোহর: লোড হচ্ছে..."
+                                    android:textSize="20sp"
+                                    android:layout_marginBottom="8dp"/>
 
-                                        <TextView
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text=""
-                                            android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/asrTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="আসর: লোড হচ্ছে..."
+                                    android:textSize="20sp"
+                                    android:layout_marginBottom="8dp"/>
 
-                                        <TextView
-                                            android:id="@+id/dhara1"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="01"
-                                            android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/maghribTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="মাগরিব: লোড হচ্ছে..."
+                                    android:textSize="20sp"
+                                    android:layout_marginBottom="8dp"/>
 
-                                        <TextView
-                                            android:id="@+id/dhara2"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="02"
-                                            android:textStyle="bold" />
+                                <TextView
+                                    android:id="@+id/ishaTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="এশা: লোড হচ্ছে..."
+                                    android:textSize="20sp"
+                                    android:layout_marginBottom="8dp"/>
 
-                                        <TextView
-                                            android:id="@+id/dhara3"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="03"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara4"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="04"
-                                            android:textStyle="bold" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1"
-                                        android:orientation="horizontal"
-                                        android:padding="1dp"
-                                        android:weightSum="5">
-
-                                        <TextView
-                                            android:id="@+id/dhara5"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="05"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara6"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="06"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara7"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="07"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara8"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="08"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara9"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="09"
-                                            android:textStyle="bold" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1"
-                                        android:orientation="horizontal"
-                                        android:padding="1dp"
-                                        android:weightSum="5">
-
-                                        <TextView
-                                            android:id="@+id/dhara10"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="10"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara11"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="11"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara12"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="12"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara13"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="13"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara14"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="14"
-                                            android:textStyle="bold" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1"
-                                        android:orientation="horizontal"
-                                        android:padding="1dp"
-                                        android:weightSum="5">
-
-                                        <TextView
-                                            android:id="@+id/dhara15"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="15"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara16"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="16"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara17"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="17"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara18"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="18"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara19"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="19"
-                                            android:textStyle="bold" />
-
-                                    </LinearLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1"
-                                        android:orientation="horizontal"
-                                        android:padding="1dp"
-                                        android:weightSum="5">
-
-                                        <TextView
-                                            android:id="@+id/dhara20"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="20"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara21"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="21"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/dhara22"
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text="22"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text=""
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:layout_width="0dp"
-                                            android:layout_height="28dp"
-                                            android:layout_margin="2dp"
-                                            android:layout_weight="1"
-                                            android:background="@color/UltraLight_Ash"
-                                            android:gravity="center"
-                                            android:text=""
-                                            android:textStyle="bold" />
-
-                                    </LinearLayout>
-
-                                </LinearLayout>
+                                <TextView
+                                    android:id="@+id/jumaTime"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="জুমআ: লোড হচ্ছে..."
+                                    android:textSize="20sp"
+                                    android:layout_marginBottom="8dp"/>
+                            </LinearLayout>
 
                                 <LinearLayout
                                     android:layout_width="0dp"
@@ -1104,6 +828,64 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_marginTop="25dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            // User Login
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="লগইন করুন"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="40dp"/>
+
+            <EditText
+                android:id="@+id/emailInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="ইমেল"
+                android:inputType="textEmailAddress"
+                android:padding="12dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/edittext_background"/>
+            <EditText
+            android:id="@+id/passwordInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="পাসওয়ার্ড"
+            android:inputType="textPassword"
+            android:padding="12dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/edittext_background"/>
+            <Button
+            android:id="@+id/loginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="লগইন"
+            android:padding="12dp"
+            android:textSize="18sp"
+            android:backgroundTint="#007BFF" android:textColor="@android:color/white"/>
+
+            <Button
+                android:id="@+id/registerButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="নতুন অ্যাকাউন্ট তৈরি করুন"
+                android:padding="12dp"
+                android:textSize="16sp"
+                android:layout_marginTop="16dp"
+                style="?attr/materialButtonOutlinedStyle"
+                android:textColor="#007BFF"/>
+        </LinearLayout>
+    
+
+
         <TextView
             android:id="@+id/developer_toast"
             android:layout_width="match_parent"
@@ -1176,6 +958,8 @@
 
             </WebView>
         </LinearLayout>
+
+
     </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

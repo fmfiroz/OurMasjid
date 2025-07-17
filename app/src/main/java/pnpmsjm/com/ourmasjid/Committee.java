@@ -33,7 +33,7 @@ public class Committee extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         membersList = new ArrayList<>();
-        adapter = new MembersAdapter(membersList);
+        adapter = new MembersAdapter(Committee.this, membersList);
         recyclerView.setAdapter(adapter);
 
         dbRef = FirebaseDatabase.getInstance().getReference("Committee");

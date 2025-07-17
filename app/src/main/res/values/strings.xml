@@ -26,13 +26,16 @@
     <string name="onumodon">অনুমোদন</string>
 
 
-    //Names<string name="comiti">কার্যনির্বাহী কমিটি</string>
+    //Names
+    <string name="comiti">কার্যনির্বাহী কমিটি</string>
 
     <string name="dayitto">দায়িত্ব ও কতর্বব্য</string>
-    <string name="dh">নং</string>//Names<string name="dn">ধারা</string>
+    <string name="dh">নং</string>//Names
+    <string name="dn">ধারা</string>
 
     <string name="detail">বিস্তারিত</string>
-    <string name="fund">তহবিল</string>//Names<string name="bankname">ইসলামি ব্যাংক বাংলাদেশ লিঃ</string>
+    <string name="fund">তহবিল</string>//Names
+    <string name="bankname">ইসলামি ব্যাংক বাংলাদেশ লিঃ</string>
     <string name="branchname">নিউ মার্কেট শাখা, রাজশাহী</string>
     <string name="accnum">20502790200 8700 02</string>
     <string name="donatetoaccount">ব্যাংকের মাধ্যমে দান করুন অথবা সভাপতি/সেক্রেটারীর সঙ্গে যোগাযোগ করুন।</string>
@@ -77,7 +80,6 @@
     <string name="s20">20।</string>
 
 
-
     //Names
     <string name="aftab_uddin">মোঃ আফতাব উদ্দীন</string>
     <string name="ismail_hossain">মোঃ ইসমাইল হোসেন</string>
@@ -114,7 +116,6 @@
     <string name="ismail_mobile">01317155433</string>
 
 
-
     <string name="paloan_mobile">01758898048</string>
     <string name="shohidul_mobile">01711187317</string>
 
@@ -138,11 +139,6 @@
     <string name="tushar_mobile">01734270567</string>
 
 
-
-
-
-
-
     <string name="upodesta">সদস্য, উপদেষ্টা পরিষদ</string>
     <string name="upodestaporishod">উপদেষ্টা পরিষদ</string>
     <string name="member">নির্বাহী সদস্য</string>
@@ -155,15 +151,6 @@
     <string name="so_secratery">সমাজ কল্যাণ সম্পাদক</string>
     <string name="lib_secratery">প্রচার ও পাঠাগার সম্পাদক</string>
     <string name="sochib">সদস্য সচিব ও ঈমাম </string>
-
-
-
-
-
-
-
-
-
 
 
     <string name="ghosona1">অত্র এলাকায় জামায়াতে নামাজ পড়ার জন্য কোন মসজিদ না থাকায় এলাকাবাসি মসজিদের প্রয়োজন মনে করে এ মসজিদ নির্মাণের পরিকল্পনা গ্রহন করে। এলাকার মৃত মকবুল হোসেনের সন্তানেরা মসজিদের জন্য জমি দান করলে ২০০৫ সালে এ মসজিদ নির্মাণ করা হয়। এলাকার ধর্মপ্রাণ মুসল্লীবৃন্দ মসজিদে নামাজ আদায় করতে থাকেন। মসজিদের উন্নয়ন এবং সুষ্ঠুভাবে পরিচালনার জন্য একটি নীতিমালা থাকা প্রয়োজন। এ মসজিদের জন্মলগ্ন থেকে পরিচালনা কমিটি থাকলেও নীতিমালা না থাকায় এবং তহবিল সংরক্ষণের অভাবের কারণে কাঙ্ক্ষিত লক্ষে মসজিদের অবকাঠামোগত কোন উন্নয়ন সম্ভব হয়নি। মসজিদের উন্নয়নকল্পে গঠনতন্ত্র ও ব্যাংক হিসাব থাকা অপরিহার্য। \n

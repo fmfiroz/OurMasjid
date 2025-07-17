@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'pnpmsjm.com.ourmasjid'
-    compileSdkVersion 34
+    compileSdkVersion 36
 
 
     signingConfigs {
@@ -72,6 +72,7 @@ dependencies {
     // Facebook SDK (consistent version)
     implementation 'com.facebook.android:facebook-login:18.0.3'
     implementation 'com.facebook.android:facebook-share:18.0.3'
+    implementation 'androidx.activity:activity:1.10.1'
 
     // Test
     testImplementation 'junit:junit:4.13.2'

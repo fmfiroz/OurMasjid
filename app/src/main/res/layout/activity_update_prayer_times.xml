@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:padding="16dp"
+tools:context=".UpdatePrayerTimesActivity">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="নামাজের সময় পরিবর্তন করুন"
+    android:textSize="24sp"
+    android:textStyle="bold"
+    android:layout_marginBottom="24dp"/>
+
+<EditText
+    android:id="@+id/editFajr"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="ফজর নামাজের সময় (যেমন: 04:30 AM)"
+    android:layout_marginBottom="12dp"/>
+
+<EditText
+    android:id="@+id/editDhuhr"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="যোহর নামাজের সময় (যেমন: 01:00 PM)"
+    android:layout_marginBottom="12dp"/>
+
+<EditText
+    android:id="@+id/editAsr"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="আসর নামাজের সময় (যেমন: 04:30 PM)"
+    android:layout_marginBottom="12dp"/>
+
+<EditText
+    android:id="@+id/editMaghrib"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="মাগরিব নামাজের সময় (যেমন: 06:45 PM)"
+    android:layout_marginBottom="12dp"/>
+
+<EditText
+    android:id="@+id/editIsha"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="এশা নামাজের সময় (যেমন: 08:15 PM)"
+    android:layout_marginBottom="12dp"/>
+
+<EditText
+    android:id="@+id/editJuma"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:hint="জুমআ নামাজের সময় (যেমন: 01:30 PM)"
+    android:layout_marginBottom="24dp"/>
+
+<Button
+    android:id="@+id/saveButton"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="সময় সংরক্ষণ করুন"
+    android:layout_gravity="center_horizontal"/>
+
+</LinearLayout>
