@@ -27,7 +27,7 @@ public class Committee extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_comiittee); // activity_main.xml ফাইলে recyclerView থাকবে
+        setContentView(R.layout.activity_committee); // activity_main.xml ফাইলে recyclerView থাকবে
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -36,7 +36,7 @@ public class Committee extends AppCompatActivity {
         adapter = new MembersAdapter(Committee.this, membersList);
         recyclerView.setAdapter(adapter);
 
-        dbRef = FirebaseDatabase.getInstance().getReference("Committee");
+        dbRef = FirebaseDatabase.getInstance().getReference("Members");
 
         dbRef.addValueEventListener(new ValueEventListener() {
             @Override

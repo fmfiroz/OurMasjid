@@ -10,8 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHolder> {
@@ -35,11 +35,34 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Members member = membersList.get(position);
-        holder.tvName.setText(member.getName());
-        holder.tvMobile.setText(member.getMobile_No());
-        holder.tvDesignation.setText(member.getDesignation());
-        holder.imgPhoto.setVisibility(View.GONE);
 
+        // Name
+        holder.tvName.setText(member.getName() != null ? member.getName() : "No Name");
+
+        // Mobile
+        holder.tvMobile.setText(member.getMobile_No() != null ? member.getMobile_No() : "No Number");
+
+        // Designation (with visibility control)
+        if (member.getDesignation() != null && !member.getDesignation().isEmpty()) {
+            holder.tvDesignation.setText(member.getDesignation());
+            holder.tvDesignation.setVisibility(View.VISIBLE);
+        } else {
+            holder.tvDesignation.setVisibility(View.GONE);
+        }
+
+        // Photo (with fallback image)
+        if (member.getPurl() != null && !member.getPurl().isEmpty()) {
+            Picasso.get()
+                    .load(member.getPurl())
+                    .placeholder(R.drawable.default_img)
+                    .error(R.drawable.error_img)
+                    .into(holder.imgPhoto);
+            holder.imgPhoto.setVisibility(View.VISIBLE);
+        } else {
+            holder.imgPhoto.setVisibility(View.GONE);
+        }
+
+        // Toggle designation on name click
         holder.tvName.setOnClickListener(v -> {
             if (holder.tvDesignation.getVisibility() == View.GONE) {
                 holder.tvDesignation.setVisibility(View.VISIBLE);
@@ -47,11 +70,6 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
                 holder.tvDesignation.setVisibility(View.GONE);
             }
         });
-
-        if (member.getPurl() != null && !member.getPurl().isEmpty()) {
-            Picasso.get().load(member.getPurl()).into(holder.imgPhoto);
-            holder.imgPhoto.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override
