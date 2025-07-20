@@ -416,5 +416,14 @@
 আল্লাহর কসম, এই পাঁচটি কারণে কোন দেশ বা জাতির ধ্বংস অনিবার্য্য।\n
 - হযরত আলী (রা.)</string>
 
+
+    <string name="fazr">ফজর</string>
+    <string name="dhur">যোহর</string>
+    <string name="asr">আসর</string>
+    <string name="maghrib">মাগরিব</string>
+    <string name="isha">এ’শা</string>
+    <string name="jumma">জুম’আ</string>
+
+
 </resources>
 
