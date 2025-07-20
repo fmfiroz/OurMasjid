@@ -518,7 +518,6 @@
                                             android:layout_width="70dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginRight="5dp"
-                                            android:background="@drawable/dharaudarrow"
                                             android:onClick="don1"
                                             android:paddingTop="3dp"
                                             android:text="5000/-"
@@ -529,7 +528,6 @@
                                             android:layout_width="70dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginRight="5dp"
-                                            android:background="@drawable/dharaudarrow"
                                             android:onClick="don2"
                                             android:paddingTop="3dp"
                                             android:text="1000/-"
@@ -540,7 +538,6 @@
                                             android:layout_width="70dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginRight="5dp"
-                                            android:background="@drawable/dharaudarrow"
                                             android:onClick="don3"
                                             android:paddingTop="3dp"
                                             android:text="500/-"
@@ -551,7 +548,6 @@
                                             android:layout_width="70dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginRight="5dp"
-                                            android:background="@drawable/dharaudarrow"
                                             android:onClick="don4"
                                             android:paddingTop="3dp"
                                             android:text="100/-"
@@ -562,7 +558,6 @@
                                             android:layout_width="70dp"
                                             android:layout_height="wrap_content"
                                             android:layout_marginRight="5dp"
-                                            android:background="@drawable/dharaudarrow"
                                             android:onClick="don5"
                                             android:paddingTop="3dp"
                                             android:text="Others"
@@ -770,26 +765,22 @@
                                         <de.hdodenhof.circleimageview.CircleImageView
                                             android:layout_width="60dp"
                                             android:layout_height="60dp"
-                                            android:layout_marginRight="5dp"
-                                            android:src="@drawable/shahidul_square" />
+                                            android:layout_marginRight="5dp" />
 
                                         <de.hdodenhof.circleimageview.CircleImageView
                                             android:layout_width="60dp"
                                             android:layout_height="60dp"
-                                            android:layout_marginRight="5dp"
-                                            android:src="@drawable/salam_photo" />
+                                            android:layout_marginRight="5dp"/>
 
                                         <de.hdodenhof.circleimageview.CircleImageView
                                             android:layout_width="60dp"
                                             android:layout_height="60dp"
-                                            android:layout_marginRight="5dp"
-                                            android:src="@drawable/kamrul_photo" />
+                                            android:layout_marginRight="5dp" />
 
                                         <de.hdodenhof.circleimageview.CircleImageView
                                             android:layout_width="60dp"
                                             android:layout_height="60dp"
-                                            android:layout_marginRight="5dp"
-                                            android:src="@drawable/firoz_square" />
+                                            android:layout_marginRight="5dp" />
 
                                     </LinearLayout>
                                 </HorizontalScrollView>

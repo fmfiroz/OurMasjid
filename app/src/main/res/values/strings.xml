@@ -5,7 +5,7 @@
     <string name="facebook_app_id">132793190888303</string>
     <string name="fb_login_protocol_scheme">fb132793190888303</string>
     <string name="app_name">মকবুল শাহী জামে মসজিদ</string>
-    <string name="package_name">pnpmsjm.com.bd.ourmasjid_1</string>
+    <string name="package_name">pnpmsjm.com. ourmasjid</string>
     <string name="package_name1">pnpmsjm.com.bd</string>
     <string name="app_id">ca-app-pub-6626454304064681~1735190404</string>
     <string name="app_id2">ca-app-pub-6626454304064681/1268286549</string>
@@ -25,10 +25,15 @@
     <string name="omorbani">অমরবাণী</string>
     <string name="onumodon">অনুমোদন</string>
 
+    <string name="sovapoti1">সভাপতি</string>
+    <string name="co_sovapoti">সহ-সভাপতি</string>
+    <string name="secratery">সাধারণ সম্পাদক</string>
+    <string name="cashier">কোষাধ্যক্ষ</string>
 
-    //Names
+    <string name="firoz_mahmud">মোঃ ফিরোজ মাহমুদ</string>
+    <string name="firoz_mobile">01719475388</string>
+
     <string name="comiti">কার্যনির্বাহী কমিটি</string>
-
     <string name="dayitto">দায়িত্ব ও কতর্বব্য</string>
     <string name="dh">নং</string>//Names
     <string name="dn">ধারা</string>
@@ -67,92 +72,17 @@
     <string name="s7">৭।</string>
     <string name="s8">৮।</string>
     <string name="s9">৯।</string>
-    <string name="s10">10।</string>
-    <string name="s11">11।</string>
-    <string name="s12">12।</string>
-    <string name="s13">13।</string>
-    <string name="s14">14।</string>
-    <string name="s15">15।</string>
-    <string name="s16">16।</string>
-    <string name="s17">17।</string>
-    <string name="s18">18।</string>
-    <string name="s19">19।</string>
-    <string name="s20">20।</string>
-
-
-    //Names
-    <string name="aftab_uddin">মোঃ আফতাব উদ্দীন</string>
-    <string name="ismail_hossain">মোঃ ইসমাইল হোসেন</string>
-    <string name="sk_kamruzzaman">শেখ কামরুজ্জামান</string>
-    <string name="abdun_nasir">মোঃ আব্দুন নাসির</string>
-
-    <string name="paloan">মোঃ নুরুল ইসলাম পাহলোয়ান</string>
-    <string name="eng_shohidul">প্রকৌ. মোঃ শহিদুল ইসলাম</string>
-    <string name="empty">Empty</string>
-    <string name="abdus_salam">মোঃ আব্দুস সালাম</string>
-    <string name="md_kamrul">মোঃ কামরুজ্জামান</string>
-    <string name="swapon">মোঃ আনিসুর রহমান (স্বপন)</string>
-    <string name="abdul_halim">মোঃ আব্দুল হালিম</string>
-    <string name="md_lalchan">মোঃ লালচাঁন</string>
-    <string name="firoz_mahmud">মোঃ ফিরোজ মাহমুদ</string>
-    <string name="baidul_islam">মোঃ বাইদুল ইসলাম</string>
-    <string name="faruk_hossain">মোঃ ফারুক হোসেন</string>
-    <string name="shohidul_sabuz">মোঃ শহিদুল ইসলাম (সবুজ)</string>
-    <string name="mdsajamal">মোঃ শাহ্জামাল</string>
-    <string name="aftab_uddin2">মোঃ আফতাব উদ্দীন</string>
-    <string name="mojibur_rahman">মোঃ মজিবুর রহমান</string>
-    <string name="abul_kashem">মাও. মোঃ আবুল কাশেম</string>
-    <string name="saber_swadhin">মোঃ সাবের হোসেন (স্বাধীন)</string>
-    <string name="sujon_sheikh">মোঃ সুজন শেখ</string>
-    <string name="mohon_ali">মোঃ মোহন আলী</string>
-    <string name="mohammad_ali">মোহাম্মদ আলী</string>
-    <string name="fazle_khoda">ফজলে-ই-খোদা</string>
-
-
-    <string name="mobileno">01XXX-XXXXXX</string>
-    <string name="aftab_mobile">01715002021</string>
-    <string name="kamruzzaman_mobile">01712076802</string>
-    <string name="nasir_mobile">01711331702</string>
-    <string name="ismail_mobile">01317155433</string>
-
-
-    <string name="paloan_mobile">01758898048</string>
-    <string name="shohidul_mobile">01711187317</string>
-
-    <string name="salam_mobile">01716101240</string>
-    <string name="kamrul_mobile">01913855573</string>
-    <string name="swapon_mobile">01762786113</string>
-    <string name="halim_mobile">01717670319</string>
-    <string name="lalchan_mobile">01716083425</string>
-    <string name="firoz_mobile">01719475388</string>
-    <string name="baidul_mobile">01706687361</string>
-    <string name="mohammad_mobile">01763743157</string>
-    <string name="faruk_mobile">01719531813</string>
-    <string name="sabuz_mobile">01712164103</string>
-    <string name="sajamal_mobile">01719550465</string>
-    <string name="aftab2_mobile">01714781891</string>
-    <string name="mojibur_mobile">01712360876</string>
-    <string name="kashem_mobile">01701049113</string>
-    <string name="saber_mobile">01723587260</string>
-    <string name="sujon_mobile">01756259920</string>
-    <string name="mohon_mobile">01717816159</string>
-    <string name="tushar_mobile">01734270567</string>
-
-
-    <string name="upodesta">সদস্য, উপদেষ্টা পরিষদ</string>
-    <string name="upodestaporishod">উপদেষ্টা পরিষদ</string>
-    <string name="member">নির্বাহী সদস্য</string>
-    <string name="sovapoti1">সভাপতি</string>
-    <string name="co_sovapoti">সহ-সভাপতি</string>
-    <string name="secratery">সাধারণ সম্পাদক</string>
-    <string name="co_secratery">সহ-সাধারণ সম্পাদক</string>
-    <string name="cashier">কোষাধ্যক্ষ</string>
-    <string name="co_cashier">সহ-কোষাধ্যক্ষ</string>
-    <string name="so_secratery">সমাজ কল্যাণ সম্পাদক</string>
-    <string name="lib_secratery">প্রচার ও পাঠাগার সম্পাদক</string>
-    <string name="sochib">সদস্য সচিব ও ঈমাম </string>
-
-
+    <string name="s10">১০।</string>
+    <string name="s11">১১।</string>
+    <string name="s12">১২।</string>
+    <string name="s13">১৩।</string>
+    <string name="s14">১৪।</string>
+    <string name="s15">১৫।</string>
+    <string name="s16">১৬।</string>
+    <string name="s17">১৭।</string>
+    <string name="s18">১৮।</string>
+    <string name="s19">১৯।</string>
+    <string name="s20">২০।</string>
     <string name="ghosona1">অত্র এলাকায় জামায়াতে নামাজ পড়ার জন্য কোন মসজিদ না থাকায় এলাকাবাসি মসজিদের প্রয়োজন মনে করে এ মসজিদ নির্মাণের পরিকল্পনা গ্রহন করে। এলাকার মৃত মকবুল হোসেনের সন্তানেরা মসজিদের জন্য জমি দান করলে ২০০৫ সালে এ মসজিদ নির্মাণ করা হয়। এলাকার ধর্মপ্রাণ মুসল্লীবৃন্দ মসজিদে নামাজ আদায় করতে থাকেন। মসজিদের উন্নয়ন এবং সুষ্ঠুভাবে পরিচালনার জন্য একটি নীতিমালা থাকা প্রয়োজন। এ মসজিদের জন্মলগ্ন থেকে পরিচালনা কমিটি থাকলেও নীতিমালা না থাকায় এবং তহবিল সংরক্ষণের অভাবের কারণে কাঙ্ক্ষিত লক্ষে মসজিদের অবকাঠামোগত কোন উন্নয়ন সম্ভব হয়নি। মসজিদের উন্নয়নকল্পে গঠনতন্ত্র ও ব্যাংক হিসাব থাকা অপরিহার্য। \n
 সে লক্ষে গত ১৬ জুন ২০১৭ ইং তারিখ ২০ শে রমজান রোজ শুক্রবার বাদ জুম্মাহ্ মসজিদের নিয়মিত মুসল্লিবৃন্দ সমবেত হয়ে মসজিদ উন্নয়নকল্পে সভাপতি মহোদয়কে কমিটি সক্রিয় করার অনুরোধ করা হলে তিনি পূর্বের কমিটি বাতিল ঘোষণা করেন এবং অস্থায়ীভাবে কমিটি গঠনের প্রস্তাব গৃহীত হয়। এ কমিটির উপর তিন মাসের মধ্যে মসজিদের গঠনতন্ত্র প্রণয়ন ও ব্যাংক হিসাব খোলার দায়িত্ব দেয়া হয়। সে মোতাবেক গঠনতন্ত্রের খসড়া দাখিল করা হলে ২৮ জুলাই ২০১৭ ইং তারিখে অনুষ্ঠিত সাধারণ সভায় চূড়ান্তভাবে অনুমোদিত হয়।</string>
     <string name="sovapoti">

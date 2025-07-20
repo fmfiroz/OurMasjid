@@ -16,4 +16,4 @@
 
 ## 📥 ডাউনলোড করুন
 
-[Google Play Store লিংক](https://play.google.com/store/apps/details?id=pnpmsjm.com.bd.ourmasjid_1)
+[Google Play Store লিংক](https://play.google.com/store/apps/details?id=pnpmsjm.com.ourmasjid)
