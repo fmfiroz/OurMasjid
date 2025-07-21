@@ -174,8 +174,31 @@
                                 android:padding="1dp"
                                 android:weightSum="5">
 
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical"
+                                    android:gravity="center_horizontal">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/fajr"
+                                        android:textStyle="bold"/>
+
+                                    <AnalogClock
+                                        android:id="@+id/analfajrTime"
+                                        android:layout_width="100dp"
+                                        android:layout_height="100dp"
+                                        android:layout_margin="4dp"/>
+                                    <TextClock
+                                        android:id="@+id/fajrTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"/>
+                                </LinearLayout>
+
+
                                 <TextView
-                                    android:id="@+id/fajrTime"
+                                    android:id="@+id/fajrTime1"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="ফজর: লোড হচ্ছে..."

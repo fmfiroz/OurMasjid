@@ -25,6 +25,13 @@
     <string name="omorbani">অমরবাণী</string>
     <string name="onumodon">অনুমোদন</string>
 
+    <string name="fajr">ফজর</string>
+    <string name="dhuhar">যোহর</string>
+    <string name="asr">আসর</string>
+    <string name="maghrib">মাগরিব</string>
+    <string name="isha">এ’শা</string>
+    <string name="jumma">জুম’আ</string>
+
     <string name="sovapoti1">সভাপতি</string>
     <string name="co_sovapoti">সহ-সভাপতি</string>
     <string name="secratery">সাধারণ সম্পাদক</string>

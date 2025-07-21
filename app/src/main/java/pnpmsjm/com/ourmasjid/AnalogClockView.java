@@ -1,9 +1,12 @@
 package pnpmsjm.com.ourmasjid;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -12,65 +15,60 @@ import androidx.annotation.Nullable;
 public class AnalogClockView extends View {
 
     private Paint paint;
-    private float hour = 0; // ঘন্টা
-    private float minute = 0; // মিনিট
+    private float hour = 0;
+    private float minute = 0;
+    private Bitmap dialBitmap;
 
     public AnalogClockView(Context context) {
         super(context);
-        init();
+        init(context);
     }
 
     public AnalogClockView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(context);
     }
 
     public AnalogClockView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(context);
     }
 
-    private void init() {
+    private void init(Context context) {
         paint = new Paint();
-        paint.setAntiAlias(true); // স্মুথ আঁকার জন্য
-        paint.setStyle(Paint.Style.STROKE); // শুধু স্ট্রোক আঁকবে, পূরণ করবে না
-        paint.setStrokeWidth(5); // স্ট্রোকের পুরুত্ব
-        paint.setColor(Color.BLACK); // ডিফল্ট রঙ
+        paint.setAntiAlias(true);
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(5);
+        paint.setColor(Color.BLACK);
+
+        // 🎯 Load FM dial PNG image from drawable
+        dialBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.analogue_clock_dial);
     }
 
-    /**
-     * নামাজের সময় (যেমন "04:30 AM") সেট করার মেথড।
-     * @param timeString নামাজের সময় স্ট্রিং ফরম্যাটে (যেমন "04:30 AM", "01:00 PM")
-     */
     public void setPrayerTime(String timeString) {
         if (timeString == null || timeString.isEmpty()) {
             this.hour = 0;
             this.minute = 0;
-            invalidate(); // UI আপডেট করুন
+            invalidate();
             return;
         }
 
         try {
-            // সময় স্ট্রিং পার্স করার চেষ্টা করুন
-            // উদাহরণ: "04:30 AM" -> hour=4, minute=30
-            // উদাহরণ: "01:00 PM" -> hour=13, minute=0
             java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("hh:mm a", java.util.Locale.getDefault());
             java.util.Date date = sdf.parse(timeString);
             if (date != null) {
                 java.util.Calendar calendar = java.util.Calendar.getInstance();
                 calendar.setTime(date);
-                this.hour = calendar.get(java.util.Calendar.HOUR_OF_DAY); // 24-ঘন্টার ফরম্যাটে ঘন্টা
+                this.hour = calendar.get(java.util.Calendar.HOUR_OF_DAY);
                 this.minute = calendar.get(java.util.Calendar.MINUTE);
             }
         } catch (java.text.ParseException e) {
             e.printStackTrace();
-            // পার্সিং ব্যর্থ হলে ডিফল্ট মান সেট করুন বা ত্রুটি দেখান
             this.hour = 0;
             this.minute = 0;
         }
-        invalidate(); // UI আপডেট করুন
+        invalidate();
     }
-
 
     @Override
     protected void onDraw(Canvas canvas) {
@@ -78,66 +76,49 @@ public class AnalogClockView extends View {
 
         int width = getWidth();
         int height = getHeight();
-        int radius = Math.min(width, height) / 2 - (int) paint.getStrokeWidth(); // ঘড়ির ব্যাসার্ধ
         int centerX = width / 2;
         int centerY = height / 2;
+        int radius = Math.min(centerX, centerY);
 
-        canvas.translate(centerX, centerY); // ক্যানভাসের অরিজিনকে সেন্টারে নিয়ে আসুন
+        canvas.save();
+        canvas.translate(centerX, centerY);
 
-        // ১. ঘড়ির ডায়াল আঁকুন
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(5);
-        paint.setColor(Color.BLACK);
-        canvas.drawCircle(0, 0, radius, paint); // মাঝখানে বৃত্ত আঁকুন
-
-        // ২. ঘন্টার দাগ আঁকুন (১২টি বড় দাগ)
-        paint.setStrokeWidth(8);
-        for (int i = 0; i < 12; i++) {
-            canvas.drawLine(0, -radius, 0, -radius + 40, paint); // 40 হল দাগের দৈর্ঘ্য
-            canvas.rotate(30); // 360 / 12 = 30 ডিগ্রি করে ঘোরান
+        // 🖼 Draw the FM dial background
+        if (dialBitmap != null) {
+            int imageSize = 2 * radius;
+            Rect src = new Rect(0, 0, dialBitmap.getWidth(), dialBitmap.getHeight());
+            Rect dst = new Rect(-radius, -radius, radius, radius);
+            canvas.drawBitmap(dialBitmap, src, dst, null);
         }
 
-        // ৩. মিনিটের দাগ আঁকুন (৬০টি ছোট দাগ)
-        paint.setStrokeWidth(3);
-        canvas.save(); // বর্তমান ক্যানভাস স্টেট সেভ করুন
-        for (int i = 0; i < 60; i++) {
-            if (i % 5 != 0) { // প্রতি 5 মিনিটের দাগ ছাড়া
-                canvas.drawLine(0, -radius, 0, -radius + 20, paint); // 20 হল দাগের দৈর্ঘ্য
-            }
-            canvas.rotate(6); // 360 / 60 = 6 ডিগ্রি করে ঘোরান
-        }
-        canvas.restore(); // আগের সেভ করা ক্যানভাস স্টেট পুনরুদ্ধার করুন
-
-        // ৪. ঘন্টার কাঁটা আঁকুন
+        // ⏰ Hour hand
         paint.setStrokeWidth(12);
-        paint.setColor(Color.BLUE); // ঘন্টার কাঁটার রঙ
-        float hourAngle = (hour % 12 + minute / 60.0f) * 30; // 30 ডিগ্রি প্রতি ঘণ্টা
+        paint.setColor(Color.BLUE);
+        float hourAngle = (hour % 12 + minute / 60.0f) * 30;
         canvas.save();
         canvas.rotate(hourAngle);
-        canvas.drawLine(0, 0, 0, -radius * 0.5f, paint); // 0.5f হল দৈর্ঘ্যের অনুপাত
+        canvas.drawLine(0, 0, 0, -radius * 0.5f, paint);
         canvas.restore();
 
-        // ৫. মিনিটের কাঁটা আঁকুন
+        // ⏰ Minute hand
         paint.setStrokeWidth(8);
-        paint.setColor(Color.RED); // মিনিটের কাঁটার রঙ
-        float minuteAngle = minute * 6; // 6 ডিগ্রি প্রতি মিনিট
+        paint.setColor(Color.RED);
+        float minuteAngle = minute * 6;
         canvas.save();
         canvas.rotate(minuteAngle);
-        canvas.drawLine(0, 0, 0, -radius * 0.8f, paint); // 0.8f হল দৈর্ঘ্যের অনুপাত
+        canvas.drawLine(0, 0, 0, -radius * 0.8f, paint);
         canvas.restore();
 
-        // ৬. কেন্দ্র বিন্দু আঁকুন
+        // ⚫ Center dot
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.DKGRAY);
-        canvas.drawCircle(0, 0, 15, paint); // মাঝখানে ছোট বৃত্ত
+        canvas.drawCircle(0, 0, 15, paint);
 
-        // ক্যানভাসের অরিজিনকে আগের অবস্থায় ফিরিয়ে আনুন (যদিও translate() স্থায়ী নয়)
-        // canvas.translate(-centerX, -centerY); // এই লাইনটি সাধারণত প্রয়োজন হয় না কারণ onDraw নতুন ক্যানভাস পায়
+        canvas.restore();
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        // ঘড়ির আকারের জন্য একটি স্কোয়ার পরিমাপ সেট করুন
         int size = Math.min(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
                 getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
         setMeasuredDimension(size, size);
