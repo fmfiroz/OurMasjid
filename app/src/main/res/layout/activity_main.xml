@@ -111,6 +111,368 @@
                         android:orientation="vertical"
                         android:padding="05dp">
 
+                        <RelativeLayout
+                            android:id="@+id/gotlayer1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/rounded_corners_white"
+                            android:elevation="10dp"
+                            android:orientation="vertical"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="5dp">
+                            <TextView
+                                android:id="@+id/prayertime"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/prayer_time_title"
+                                android:textStyle="bold"
+                                android:layout_centerHorizontal="true"
+                                android:textSize="20sp"/>
+                            <GridLayout
+                                xmlns:android="http://schemas.android.com/apk/res/android"
+                                android:id="@+id/gridLayout"
+                                android:layout_below="@id/prayertime"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:columnCount="3"
+                                android:rowCount="2"
+                                android:orientation="horizontal"
+                                android:useDefaultMargins="true">
+
+                                <!-- Box 1 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:layout_row="0"
+                                    android:layout_column="0"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/fajr"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold"/>
+                                    <pnpmsjm.com.ourmasjid.AnalogClockView
+                                        android:id="@+id/analoguefajrTime"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="100dp"/>
+                                    <TextView
+                                        android:id="@+id/fajrTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="ফজর:"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- Box 2 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:layout_row="0"
+                                    android:layout_column="1"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/dhuhr"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold"/>
+                                    <pnpmsjm.com.ourmasjid.AnalogClockView
+                                        android:id="@+id/analoguedhuhrTime"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="100dp"/>
+                                    <TextView
+                                        android:id="@+id/dhuhrTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="ফজর:"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- Box 3 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:layout_row="0"
+                                    android:layout_column="2"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/asr"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold"/>
+                                    <pnpmsjm.com.ourmasjid.AnalogClockView
+                                        android:id="@+id/analogueasrTime"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="100dp"/>
+                                    <TextView
+                                        android:id="@+id/asrTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="ফজর:"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- Box 4 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:layout_row="1"
+                                    android:layout_column="0"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/maghrib"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold"/>
+                                    <pnpmsjm.com.ourmasjid.AnalogClockView
+                                        android:id="@+id/analoguemaghribTime"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="100dp"/>
+                                    <TextView
+                                        android:id="@+id/maghribTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="ফজর:"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- Box 5 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:layout_row="1"
+                                    android:layout_column="1"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/isha"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold"/>
+                                    <pnpmsjm.com.ourmasjid.AnalogClockView
+                                        android:id="@+id/analogueishaTime"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="100dp"/>
+                                    <TextView
+                                        android:id="@+id/ishaTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="ফজর:"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                                <!-- Box 6 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_columnWeight="1"
+                                    android:layout_row="1"
+                                    android:layout_column="2"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/jumma"
+                                        android:textSize="15sp"
+                                        android:textStyle="bold"/>
+                                    <pnpmsjm.com.ourmasjid.AnalogClockView
+                                        android:id="@+id/analoguejummaTime"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="100dp"/>
+                                    <TextView
+                                        android:id="@+id/jummaTime"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="ফজর:"
+                                        android:textSize="15sp"/>
+                                </LinearLayout>
+
+                            </GridLayout>
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/gotlayer1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="5dp"
+                            android:background="@drawable/rounded_corners_white"
+                            android:elevation="10dp"
+                            android:orientation="vertical"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="5dp"
+                            android:paddingBottom="5dp">
+                            <GridLayout
+                                xmlns:android="http://schemas.android.com/apk/res/android"
+                                android:id="@+id/gridLayout2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:columnCount="5"
+                                android:rowCount="1"
+                                android:padding="16dp"
+                                android:orientation="horizontal"
+                                android:useDefaultMargins="true">
+
+                                <!-- Column 1 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="100dp"
+                                    android:layout_columnWeight="1"
+                                    android:layout_column="0"
+                                    android:layout_row="0"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/speaker" />
+
+                                    <TextView
+                                        android:id="@+id/ghosona"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/solaimanlipi"
+                                        android:gravity="center"
+                                        android:text="@string/ghosona"
+                                        android:textColor="@color/Gray"
+                                        android:textSize="15dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="RtlCompat" />
+
+                                </LinearLayout>
+
+                                <!-- Column 2 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="100dp"
+                                    android:layout_columnWeight="1"
+                                    android:layout_column="1"
+                                    android:layout_row="0"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/mulniti_image" />
+
+                                    <TextView
+                                        android:id="@+id/mulniti"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/solaimanlipi"
+                                        android:gravity="center"
+                                        android:text="@string/mulniti"
+                                        android:textColor="@color/Gray"
+                                        android:textSize="15dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="RtlCompat" />
+                                </LinearLayout>
+
+                                <!-- Column 3 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="100dp"
+                                    android:layout_columnWeight="1"
+                                    android:layout_column="2"
+                                    android:layout_row="0"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/gothon_image" />
+
+                        <TextView
+                            android:id="@+id/gothontontro2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/solaimanlipi"
+                            android:gravity="center"
+                            android:text="@string/dharas"
+                            android:textColor="@color/Gray"
+                            android:textSize="15dp"
+                            android:textStyle="bold"
+                            tools:ignore="RtlCompat" />
+
+                    </LinearLayout>
+
+                                <!-- Column 4 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="100dp"
+                                    android:layout_columnWeight="1"
+                                    android:layout_column="3"
+                                    android:layout_row="0"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/omor_bani" />
+
+                                    <TextView
+                                        android:id="@+id/omorbani"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/solaimanlipi"
+                                        android:gravity="center"
+                                        android:text="@string/omorbani"
+                                        android:textColor="@color/Gray"
+                                        android:textSize="15dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="RtlCompat" />
+
+                                </LinearLayout>
+
+                                <!-- Column 5 -->
+                                <LinearLayout
+                                    android:layout_width="0dp"
+                                    android:layout_height="100dp"
+                                    android:layout_columnWeight="1"
+                                    android:layout_column="4"
+                                    android:layout_row="0"
+                                    android:orientation="vertical"
+                                    android:gravity="center">
+                                    <ImageView
+                                        android:layout_width="30dp"
+                                        android:layout_height="30dp"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/approved_sign" />
+
+                                    <TextView
+                                        android:id="@+id/onumodon"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/solaimanlipi"
+                                        android:gravity="center"
+                                        android:text="@string/onumodon"
+                                        android:textColor="@color/Gray"
+                                        android:textSize="15dp"
+                                        android:textStyle="bold"
+                                        tools:ignore="RtlCompat" />
+
+                                </LinearLayout>
+
+                            </GridLayout>
+                        </RelativeLayout>
 
                         <RelativeLayout
                             android:id="@+id/gotlayer"
@@ -158,432 +520,6 @@
                                 android:layout_alignParentTop="true"
                                 android:layout_centerHorizontal="true"
                                 android:src="@drawable/shadow" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/gth1"
-                                android:orientation="horizontal"
-                                android:weightSum="5">
-
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="3"
-                                android:orientation="vertical"
-                                android:padding="1dp">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/prayer_time_title"
-                                    android:textStyle="bold"
-                                    android:layout_gravity="center_horizontal"
-                                    android:textSize="20sp"/>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="3"
-                                    android:orientation="horizontal"
-                                    android:padding="1dp"
-                                    android:weightSum="2">
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:padding="16dp"
-                                        android:gravity="center_horizontal">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/fajr"
-                                            android:textSize="15sp"
-                                            android:textStyle="bold"/>
-                                        <pnpmsjm.com.ourmasjid.AnalogClockView
-                                            android:id="@+id/analoguefajrTime"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="100dp"
-                                            android:layout_marginTop="8dp"/>
-                                        <TextView
-                                            android:id="@+id/fajrTime"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="ফজর:"
-                                            android:textSize="20sp"
-                                            android:textColor="#000000"/>
-                                                                            </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:padding="16dp"
-                                        android:gravity="center_horizontal">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/dhuhr"
-                                            android:textSize="15sp"
-                                            android:textStyle="bold"/>
-                                        <pnpmsjm.com.ourmasjid.AnalogClockView
-                                            android:id="@+id/analoguedhuhrTime"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="100dp"
-                                            android:layout_marginTop="8dp"/>
-                                        <TextView
-                                            android:id="@+id/dhuhrTime"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="ফজর:"
-                                            android:textSize="20sp"
-                                            android:textColor="#000000"/>
-                                    </LinearLayout>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="3"
-                                    android:orientation="horizontal"
-                                    android:padding="1dp"
-                                    android:weightSum="2">
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:padding="16dp"
-                                        android:gravity="center_horizontal">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/asr"
-                                            android:textSize="15sp"
-                                            android:textStyle="bold"/>
-                                        <pnpmsjm.com.ourmasjid.AnalogClockView
-                                            android:id="@+id/analogueasrTime"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="100dp"
-                                            android:layout_marginTop="8dp"/>
-                                        <TextView
-                                            android:id="@+id/asrTime"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="ফজর:"
-                                            android:textSize="20sp"
-                                            android:textColor="#000000"/>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:padding="16dp"
-                                        android:gravity="center_horizontal">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/maghrib"
-                                            android:textSize="15sp"
-                                            android:textStyle="bold"/>
-                                        <pnpmsjm.com.ourmasjid.AnalogClockView
-                                            android:id="@+id/analoguemaghribTime"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="100dp"
-                                            android:layout_marginTop="8dp"/>
-                                        <TextView
-                                            android:id="@+id/maghribTime"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="ফজর:"
-                                            android:textSize="20sp"
-                                            android:textColor="#000000"/>
-                                    </LinearLayout>
-                                </LinearLayout>
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="3"
-                                    android:orientation="horizontal"
-                                    android:padding="1dp"
-                                    android:weightSum="2">
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:padding="16dp"
-                                        android:gravity="center_horizontal">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/isha"
-                                            android:textSize="15sp"
-                                            android:textStyle="bold"/>
-                                        <pnpmsjm.com.ourmasjid.AnalogClockView
-                                            android:id="@+id/analogueishaTime"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="100dp"
-                                            android:layout_marginTop="8dp"/>
-                                        <TextView
-                                            android:id="@+id/ishaTime"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="ফজর:"
-                                            android:textSize="20sp"
-                                            android:textColor="#000000"/>
-                                    </LinearLayout>
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content"
-                                        android:layout_weight="1"
-                                        android:orientation="vertical"
-                                        android:padding="16dp"
-                                        android:gravity="center_horizontal">
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="@string/jumma"
-                                            android:textSize="15sp"
-                                            android:textStyle="bold"/>
-                                        <pnpmsjm.com.ourmasjid.AnalogClockView
-                                            android:id="@+id/analoguejummaTime"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="100dp"
-                                            android:layout_marginTop="8dp"/>
-                                        <TextView
-                                            android:id="@+id/jummaTime"
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:text="ফজর:"
-                                            android:textSize="20sp"
-                                            android:textColor="#000000"/>
-                                    </LinearLayout>
-                                </LinearLayout>
-                            </LinearLayout>
-
-
-
-
-
-                                android:id="@+id/asrTime"
-                                android:id="@+id/maghribTime"
-                                android:id="@+id/ishaTime"
-                                android:id="@+id/jumaTime"
-
-                                <LinearLayout
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:layout_marginLeft="5dp"
-                                    android:layout_weight="2"
-                                    android:orientation="vertical"
-                                    android:weightSum="5">
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1">
-
-                                        <ImageView
-                                            android:layout_width="30dp"
-                                            android:layout_height="30dp"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/speaker" />
-
-                                        <TextView
-                                            android:id="@+id/ghosona"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:fontFamily="@font/solaimanlipi"
-                                            android:gravity="center"
-                                            android:paddingLeft="40dp"
-                                            android:text="@string/ghosona"
-                                            android:textAlignment="textStart"
-                                            android:textColor="@color/Gray"
-                                            android:textSize="15dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="RtlCompat" />
-
-                                        <ImageView
-                                            android:id="@+id/imageView2"
-                                            android:layout_width="10dp"
-                                            android:layout_height="15dp"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/arrow" />
-
-                                        <TextView
-                                            android:layout_width="wrap_content"
-                                            android:layout_height="wrap_content"
-                                            android:layout_alignParentTop="true"
-                                            android:layout_gravity="center"
-                                            android:layout_marginTop="241dp"
-                                            android:layout_marginEnd="26dp"
-                                            android:layout_marginRight="26dp"
-                                            android:layout_toStartOf="@+id/imageView2"
-                                            android:layout_toLeftOf="@+id/imageView2"
-                                            android:fontFamily="@font/solaimanlipi"
-                                            android:text="@string/sovapoti1" />
-                                    </RelativeLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="3dp"
-                                        android:background="@drawable/shadow_border"></LinearLayout>
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1">
-
-                                        <ImageView
-                                            android:layout_width="30dp"
-                                            android:layout_height="30dp"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/mulniti_image" />
-
-                                        <TextView
-                                            android:id="@+id/mulniti"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:fontFamily="@font/solaimanlipi"
-                                            android:gravity="center"
-                                            android:paddingStart="40dp"
-                                            android:text="@string/mulniti"
-                                            android:textAlignment="textStart"
-                                            android:textColor="@color/Gray"
-                                            android:textSize="15dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="RtlCompat" />
-
-                                        <ImageView
-                                            android:layout_width="10dp"
-                                            android:layout_height="15dp"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/arrow" />
-                                    </RelativeLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="3dp"
-                                        android:background="@drawable/shadow_border"></LinearLayout>
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1">
-
-                                        <ImageView
-                                            android:layout_width="30dp"
-                                            android:layout_height="30dp"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/gothon_image" />
-
-                                        <TextView
-                                            android:id="@+id/gothontontro2"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:fontFamily="@font/solaimanlipi"
-                                            android:gravity="center"
-                                            android:paddingLeft="40dp"
-                                            android:text="@string/dharas"
-                                            android:textAlignment="textStart"
-                                            android:textColor="@color/Gray"
-                                            android:textSize="15dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="RtlCompat" />
-
-                                        <ImageView
-                                            android:layout_width="10dp"
-                                            android:layout_height="15dp"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/arrow" />
-                                    </RelativeLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="3dp"
-                                        android:background="@drawable/shadow_border"></LinearLayout>
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1">
-
-                                        <ImageView
-                                            android:layout_width="30dp"
-                                            android:layout_height="30dp"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/omor_bani" />
-
-                                        <TextView
-                                            android:id="@+id/omorbani"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:fontFamily="@font/solaimanlipi"
-                                            android:gravity="center"
-                                            android:paddingStart="40dp"
-                                            android:text="@string/omorbani"
-                                            android:textAlignment="textStart"
-                                            android:textColor="@color/Gray"
-                                            android:textSize="15dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="RtlCompat" />
-
-                                        <ImageView
-                                            android:layout_width="10dp"
-                                            android:layout_height="15dp"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/arrow" />
-                                    </RelativeLayout>
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="3dp"
-                                        android:background="@drawable/shadow_border"></LinearLayout>
-
-                                    <RelativeLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="0dp"
-                                        android:layout_weight="1">
-
-                                        <ImageView
-                                            android:layout_width="30dp"
-                                            android:layout_height="30dp"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/approved_sign" />
-
-                                        <TextView
-                                            android:id="@+id/onumodon"
-                                            android:layout_width="match_parent"
-                                            android:layout_height="match_parent"
-                                            android:fontFamily="@font/solaimanlipi"
-                                            android:gravity="center"
-                                            android:paddingStart="40dp"
-                                            android:text="@string/onumodon"
-                                            android:textAlignment="textStart"
-                                            android:textColor="@color/Gray"
-                                            android:textSize="15dp"
-                                            android:textStyle="bold"
-                                            tools:ignore="RtlCompat" />
-
-                                        <ImageView
-                                            android:layout_width="10dp"
-                                            android:layout_height="15dp"
-                                            android:layout_alignParentRight="true"
-                                            android:layout_centerVertical="true"
-                                            android:src="@drawable/arrow" />
-
-                                    </RelativeLayout>
-
-
-                                </LinearLayout>
-
-
-                            </LinearLayout>
 
                         </RelativeLayout>
 
