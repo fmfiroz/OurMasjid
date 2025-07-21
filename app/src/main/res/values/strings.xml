@@ -25,12 +25,6 @@
     <string name="omorbani">অমরবাণী</string>
     <string name="onumodon">অনুমোদন</string>
 
-    <string name="fajr">ফজর</string>
-    <string name="dhuhar">যোহর</string>
-    <string name="asr">আসর</string>
-    <string name="maghrib">মাগরিব</string>
-    <string name="isha">এ’শা</string>
-    <string name="jumma">জুম’আ</string>
 
     <string name="sovapoti1">সভাপতি</string>
     <string name="co_sovapoti">সহ-সভাপতি</string>
@@ -424,12 +418,12 @@
 - হযরত আলী (রা.)</string>
 
 
-    <string name="fazr">ফজর</string>
-    <string name="dhur">যোহর</string>
+    <string name="fajr">ফজর</string>
+    <string name="dhuhr">যোহর</string>
     <string name="asr">আসর</string>
     <string name="maghrib">মাগরিব</string>
-    <string name="isha">এ’শা</string>
-    <string name="jumma">জুম’আ</string>
+    <string name="isha">এশা</string>
+    <string name="juma">জুমআ</string>
 
 
 </resources>

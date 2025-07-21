@@ -45,6 +45,9 @@ public class AnalogClockView extends View {
         dialBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.analogue_clock_dial);
     }
 
+    /**
+     * স্ট্রিং টাইম পাস করে সেট করার জন্য (যেমন "04:50 AM")
+     */
     public void setPrayerTime(String timeString) {
         if (timeString == null || timeString.isEmpty()) {
             this.hour = 0;
@@ -67,6 +70,15 @@ public class AnalogClockView extends View {
             this.hour = 0;
             this.minute = 0;
         }
+        invalidate();
+    }
+
+    /**
+     * সময় hours ও minutes হিসেবে সেট করার জন্য
+     */
+    public void setTime(int hour, int minute) {
+        this.hour = hour;
+        this.minute = minute;
         invalidate();
     }
 

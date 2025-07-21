@@ -171,80 +171,173 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="3"
                                 android:orientation="vertical"
-                                android:padding="1dp"
-                                android:weightSum="5">
-
+                                android:padding="1dp">
                                 <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:orientation="vertical"
-                                    android:gravity="center_horizontal">
-                                    <TextView
-                                        android:layout_width="wrap_content"
+                                    android:layout_weight="3"
+                                    android:orientation="horizontal"
+                                    android:padding="1dp"
+                                    android:weightSum="2">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
-                                        android:text="@string/fajr"
-                                        android:textStyle="bold"/>
+                                        android:layout_weight="1"
+                                        android:orientation="vertical"
+                                        android:padding="16dp"
+                                        android:gravity="center_horizontal">
 
-                                    <AnalogClock
-                                        android:id="@+id/analfajrTime"
-                                        android:layout_width="100dp"
-                                        android:layout_height="100dp"
-                                        android:layout_margin="4dp"/>
-                                    <TextClock
-                                        android:id="@+id/fajrTime"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"/>
+                                        <TextView
+                                            android:id="@+id/fajrTime"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="ফজর:"
+                                            android:textSize="20sp"
+                                            android:textColor="#000000"/>
+
+                                        <pnpmsjm.com.ourmasjid.AnalogClockView
+                                            android:id="@+id/analoguefajrTime"
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+                                            android:layout_marginTop="8dp"/>
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical"
+                                        android:padding="16dp"
+                                        android:gravity="center_horizontal">
+
+                                        <TextView
+                                            android:id="@+id/dhuhrTime"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="ফজর:"
+                                            android:textSize="20sp"
+                                            android:textColor="#000000"/>
+
+                                        <pnpmsjm.com.ourmasjid.AnalogClockView
+                                            android:id="@+id/analoguedhuhrTime"
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+                                            android:layout_marginTop="8dp"/>
+                                    </LinearLayout>
                                 </LinearLayout>
-
-
-                                <TextView
-                                    android:id="@+id/fajrTime1"
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="ফজর: লোড হচ্ছে..."
-                                    android:textSize="20sp"
-                                    android:layout_marginBottom="8dp"/>
+                                    android:layout_weight="3"
+                                    android:orientation="horizontal"
+                                    android:padding="1dp"
+                                    android:weightSum="2">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical"
+                                        android:padding="16dp"
+                                        android:gravity="center_horizontal">
 
-                                <TextView
-                                    android:id="@+id/dhuhrTime"
+                                        <TextView
+                                            android:id="@+id/asrTime"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="ফজর:"
+                                            android:textSize="20sp"
+                                            android:textColor="#000000"/>
+
+                                        <pnpmsjm.com.ourmasjid.AnalogClockView
+                                            android:id="@+id/analogueasrTime"
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+                                            android:layout_marginTop="8dp"/>
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical"
+                                        android:padding="16dp"
+                                        android:gravity="center_horizontal">
+
+                                        <TextView
+                                            android:id="@+id/maghribTime"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="ফজর:"
+                                            android:textSize="20sp"
+                                            android:textColor="#000000"/>
+
+                                        <pnpmsjm.com.ourmasjid.AnalogClockView
+                                            android:id="@+id/analoguemaghribTime"
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+                                            android:layout_marginTop="8dp"/>
+                                    </LinearLayout>
+                                </LinearLayout>
+                                <LinearLayout
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="যোহর: লোড হচ্ছে..."
-                                    android:textSize="20sp"
-                                    android:layout_marginBottom="8dp"/>
+                                    android:layout_weight="3"
+                                    android:orientation="horizontal"
+                                    android:padding="1dp"
+                                    android:weightSum="2">
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical"
+                                        android:padding="16dp"
+                                        android:gravity="center_horizontal">
 
-                                <TextView
-                                    android:id="@+id/asrTime"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="আসর: লোড হচ্ছে..."
-                                    android:textSize="20sp"
-                                    android:layout_marginBottom="8dp"/>
+                                        <TextView
+                                            android:id="@+id/ishaTime"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="ফজর:"
+                                            android:textSize="20sp"
+                                            android:textColor="#000000"/>
 
-                                <TextView
-                                    android:id="@+id/maghribTime"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="মাগরিব: লোড হচ্ছে..."
-                                    android:textSize="20sp"
-                                    android:layout_marginBottom="8dp"/>
+                                        <pnpmsjm.com.ourmasjid.AnalogClockView
+                                            android:id="@+id/analogueishaTime"
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+                                            android:layout_marginTop="8dp"/>
+                                    </LinearLayout>
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:orientation="vertical"
+                                        android:padding="16dp"
+                                        android:gravity="center_horizontal">
 
-                                <TextView
-                                    android:id="@+id/ishaTime"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="এশা: লোড হচ্ছে..."
-                                    android:textSize="20sp"
-                                    android:layout_marginBottom="8dp"/>
+                                        <TextView
+                                            android:id="@+id/jummaTime"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:text="ফজর:"
+                                            android:textSize="20sp"
+                                            android:textColor="#000000"/>
 
-                                <TextView
-                                    android:id="@+id/jumaTime"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="জুমআ: লোড হচ্ছে..."
-                                    android:textSize="20sp"
-                                    android:layout_marginBottom="8dp"/>
+                                        <pnpmsjm.com.ourmasjid.AnalogClockView
+                                            android:id="@+id/analoguejummaTime"
+                                            android:layout_width="100dp"
+                                            android:layout_height="100dp"
+                                            android:layout_marginTop="8dp"/>
+                                    </LinearLayout>
+                                </LinearLayout>
                             </LinearLayout>
+
+
+
+
+
+                                android:id="@+id/asrTime"
+                                android:id="@+id/maghribTime"
+                                android:id="@+id/ishaTime"
+                                android:id="@+id/jumaTime"
 
                                 <LinearLayout
                                     android:layout_width="0dp"
