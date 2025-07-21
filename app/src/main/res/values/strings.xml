@@ -418,12 +418,14 @@
 - হযরত আলী (রা.)</string>
 
 
+
+    <string name="prayer_time_title">নামাজের সময়সূচি</string>
     <string name="fajr">ফজর</string>
     <string name="dhuhr">যোহর</string>
     <string name="asr">আসর</string>
     <string name="maghrib">মাগরিব</string>
     <string name="isha">এশা</string>
-    <string name="juma">জুমআ</string>
+    <string name="jumma">জুমআ</string>
 
 
 </resources>
