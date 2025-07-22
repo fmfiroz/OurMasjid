@@ -52,7 +52,7 @@
             android:name=".MainActivity"
             android:exported="false" />
         <activity
-            android:name=".GothonTontro_1"
+            android:name=".GothonTontro"
             android:exported="false" />
         <activity
             android:name=".Dhara_1"

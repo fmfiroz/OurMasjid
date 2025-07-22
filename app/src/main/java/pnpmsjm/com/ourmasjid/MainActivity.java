@@ -9,7 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,8 +17,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.RequestConfiguration;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,8 +24,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
     private TextView imam_salary, muajjin_salary, electricity_bill, misc_expence, total_expence;
     private TextView cash_in_hand, dev_fund_income, kollan_fund_income, current_balance;
 
+    // LinearLayouts for navigation
+    private LinearLayout ghosona1, mulniti1, gothontontro1, omorbani1, onumodon1;
+
     // Firebase references
     private DatabaseReference prayerTimesRef, monthlyReportRef;
 
@@ -65,6 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize Views
         initViews();
+
+        // Setup LinearLayout click listeners
+        setupLinearLayoutClicks();
 
         // Listen for prayer times changes
         prayerTimesRef.addValueEventListener(new ValueEventListener() {
@@ -111,13 +113,6 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
         });
-
-        // Initialize AdMob (if you use it)
-        RequestConfiguration configuration = new RequestConfiguration.Builder()
-                .setTestDeviceIds(Arrays.asList("CE1FDF3A2281C0F490245647207A6184"))
-                .build();
-        MobileAds.setRequestConfiguration(configuration);
-        MobileAds.initialize(this, status -> {});
     }
 
     private void initViews() {
@@ -155,6 +150,35 @@ public class MainActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
         loginButton = findViewById(R.id.loginButton);
+
+        // Find LinearLayouts by id
+        ghosona1 = findViewById(R.id.ghosona1);
+        mulniti1 = findViewById(R.id.mulniti1);
+        gothontontro1 = findViewById(R.id.gothontontro1);
+        omorbani1 = findViewById(R.id.omorbani1);
+        onumodon1 = findViewById(R.id.onumodon1);
+    }
+
+    private void setupLinearLayoutClicks() {
+        ghosona1.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, Ghosona.class));
+        });
+
+        mulniti1.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, Mulniti.class));
+        });
+
+        gothontontro1.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, GothonTontro.class));
+        });
+
+        omorbani1.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, Omorbani.class));
+        });
+
+        onumodon1.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, Onumodon.class));
+        });
     }
 
     private void loadReportData() {
@@ -285,8 +309,19 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "ব্যাংকের মাধ্যমে দান করুন অথবা সভাপতি/সেক্রেটারীর সঙ্গে যোগাযোগ করুন।", Toast.LENGTH_LONG).show();
     }
 
-    public void don2(View v) { don1(v); }
-    public void don3(View v) { don1(v); }
-    public void don4(View v) { don1(v); }
-    public void don5(View v) { don1(v); }
+    public void don2(View v) {
+        don1(v);
+    }
+
+    public void don3(View v) {
+        don1(v);
+    }
+
+    public void don4(View v) {
+        don1(v);
+    }
+
+    public void don5(View v) {
+        don1(v);
+    }
 }

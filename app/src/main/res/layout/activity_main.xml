@@ -1024,7 +1024,7 @@
                                     android:background="@color/Green_with_80_Black"></LinearLayout>
 
                                 <TextView
-                                    android:id="@+id/comiti"
+                                    android:id="@+id/members"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:layout_marginLeft="10dp"

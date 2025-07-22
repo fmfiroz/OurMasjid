@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class GothonTontro_1 extends AppCompatActivity {
+public class GothonTontro extends AppCompatActivity {
     public static TextView but1, but2, but3, but4, but5, but6, but7, but8, but9, but10, but11, but12, but13, but14, but15, but16, but17, but18, but19, but20, but21, but22;
     public void init(){
         but1=(TextView) findViewById(R.id.but1);
@@ -36,154 +36,154 @@ public class GothonTontro_1 extends AppCompatActivity {
         but1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_1.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_1.class);
                 startActivity(i);
             }
         });
         but2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_2.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_2.class);
                 startActivity(i);
             }
         });
         but3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_3.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_3.class);
                 startActivity(i);
             }
         });
         but4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_4.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_4.class);
                 startActivity(i);
             }
         });
         but5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_5.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_5.class);
                 startActivity(i);
             }
         });
         but6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_6.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_6.class);
                 startActivity(i);
             }
         });
         but7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_7.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_7.class);
                 startActivity(i);
             }
         });
         but8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_8.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_8.class);
                 startActivity(i);
             }
         });
         but9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_9.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_9.class);
                 startActivity(i);
             }
         });
         but10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_10.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_10.class);
                 startActivity(i);
             }
         });
         but11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_11.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_11.class);
                 startActivity(i);
             }
         });
         but12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_12.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_12.class);
                 startActivity(i);
             }
         });
         but13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_13.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_13.class);
                 startActivity(i);
             }
         });
         but14.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_14.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_14.class);
                 startActivity(i);
             }
         });
         but15.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_15.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_15.class);
                 startActivity(i);
             }
         });
         but16.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_16.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_16.class);
                 startActivity(i);
             }
         });
         but17.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_17.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_17.class);
                 startActivity(i);
             }
         });
         but18.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_18.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_18.class);
                 startActivity(i);
             }
         });
         but19.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_19.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_19.class);
                 startActivity(i);
             }
         });
         but20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_20.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_20.class);
                 startActivity(i);
             }
         });
         but21.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_21.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_21.class);
                 startActivity(i);
             }
         });
         but22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i=new Intent(GothonTontro_1.this, Dhara_22.class);
+                Intent i=new Intent(GothonTontro.this, Dhara_22.class);
                 startActivity(i);
             }
         });
