@@ -427,6 +427,31 @@
     <string name="isha">এশা</string>
     <string name="jumma">জুমআ</string>
 
+    <string name="ser">ক্রমিক</string>
+    <string name="various_income">বিভিন্ন খাতে আয়</string>
+    <string name="various_expence">বিভিন্ন খাতে ব্যায়</string>
+    <string name="total_taka">টাকার পরিমাণ</string>
+    <string name="monthly_chada">মাসিক চাঁদা</string>
+    <string name="masjid_kouta">মসজিদের কৌটা হতে</string>
+    <string name="first_week">১ম সপ্তাহ</string>
+    <string name="second_week">২য় সপ্তাহ</string>
+    <string name="third_week">৩য় সপ্তাহ</string>
+    <string name="fourth_week">৪র্থ সপ্তাহ</string>
+    <string name="misc_danbox">অন্যান্য (দান বাক্স)</string>
+    <string name="total_income">মোট আয়</string>
+    <string name="total_expence">মোট ব্যায়</string>
+    <string name="imam_salary">ইমাম সাহেবের বেতন</string>
+    <string name="muajjin_salary">মুয়াজ্জিনের বেতন</string>
+    <string name="electricity_bill">বিদ্যুৎ বিল</string>
+    <string name="misc_expence">অন্যান্য খরচ</string>
+    <string name="cash_in_hand">হাতে জমা (মোট আয় - মোট ব্যায়)</string>
+    <string name="dev_fund_income">উন্নয়ন খাতে আয়</string>
+    <string name="kollan_fund_income">কল্যাণ ফান্ডে আয়</string>
+    <string name="current_balance">বর্তমান স্থিতি</string>
+
+
+
+
 
 </resources>
 

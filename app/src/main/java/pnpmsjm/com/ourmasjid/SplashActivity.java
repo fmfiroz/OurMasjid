@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class SplashActivity extends AppCompatActivity {
-    private static int SPLASH_TIME_OUT=500;
+    private static int SPLASH_TIME_OUT=50;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

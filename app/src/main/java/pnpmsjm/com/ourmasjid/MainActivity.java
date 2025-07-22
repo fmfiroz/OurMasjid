@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,73 +31,43 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    // TextViews
-    private TextView donaate1, donaate2, donaate3, donaate4, donaate5, developer_toast, ghosona, mulniti, omorbani,
-            gothontontro, gothontontro2, onumodon, comiti,
-            fajrTime, dhuhrTime, asrTime, maghribTime, ishaTime, jumaTime;
+    // Prayer time TextViews
+    private TextView fajrTime, dhuhrTime, asrTime, maghribTime, ishaTime, jumaTime;
 
-    // Analogue clocks
-    private AnalogClockView analogueFajrTime, analogueDhuhrTime, analogueAsrTime, analogueMaghribTime, analogueIshaTime, analogueJummaTime;
+    // Your AnalogClockView references (assuming you have this custom view)
+    private AnalogClockView analogueFajrTime, analogueDhuhrTime, analogueAsrTime,
+            analogueMaghribTime, analogueIshaTime, analogueJummaTime;
 
+    // Login UI
     private EditText emailInput, passwordInput;
     private Button loginButton;
     private FirebaseAuth mAuth;
 
-    private DatabaseReference mDatabase;
+    // Monthly report TextViews
+    private TextView monthly_chada, first_week, second_week, third_week, fourth_week, misc_danbox, total_income;
+    private TextView imam_salary, muajjin_salary, electricity_bill, misc_expence, total_expence;
+    private TextView cash_in_hand, dev_fund_income, kollan_fund_income, current_balance;
 
-    private ImageView call_secratery;
+    // Firebase references
+    private DatabaseReference prayerTimesRef, monthlyReportRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // TextViews findViewById
-        donaate1 = findViewById(R.id.donaate1);
-        donaate2 = findViewById(R.id.donaate2);
-        donaate3 = findViewById(R.id.donaate3);
-        donaate4 = findViewById(R.id.donaate4);
-        donaate5 = findViewById(R.id.donaate5);
-        developer_toast = findViewById(R.id.developer_toast);
-        ghosona = findViewById(R.id.ghosona);
-        mulniti = findViewById(R.id.mulniti);
-        omorbani = findViewById(R.id.omorbani);
-        gothontontro = findViewById(R.id.gothontontro);
-        gothontontro2 = findViewById(R.id.gothontontro2);
-        onumodon = findViewById(R.id.onumodon);
-        comiti = findViewById(R.id.comiti);
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
 
-        // Intent listeners
-        developer_toast.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Others_1.class)));
-        ghosona.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Ghosona.class)));
-        mulniti.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Mulniti.class)));
-        gothontontro.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, GothonTontro_1.class)));
-        gothontontro2.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, GothonTontro_1.class)));
-        omorbani.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Omorbani.class)));
-        onumodon.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Onumodon.class)));
-        comiti.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Committee.class)));
+        // Initialize database references
+        prayerTimesRef = FirebaseDatabase.getInstance().getReference("prayer_times");
+        monthlyReportRef = FirebaseDatabase.getInstance().getReference("monthly_report");
 
-        // নামাজের সময়ের TextView findViewById
-        fajrTime = findViewById(R.id.fajrTime);
-        dhuhrTime = findViewById(R.id.dhuhrTime);
-        asrTime = findViewById(R.id.asrTime);
-        maghribTime = findViewById(R.id.maghribTime);
-        ishaTime = findViewById(R.id.ishaTime);
-        jumaTime = findViewById(R.id.jummaTime);
+        // Initialize Views
+        initViews();
 
-        // Analogue clock view findViewById
-        analogueFajrTime = findViewById(R.id.analoguefajrTime);
-        analogueDhuhrTime = findViewById(R.id.analoguedhuhrTime);
-        analogueAsrTime = findViewById(R.id.analogueasrTime);
-        analogueMaghribTime = findViewById(R.id.analoguemaghribTime);
-        analogueIshaTime = findViewById(R.id.analogueishaTime);
-        analogueJummaTime = findViewById(R.id.analoguejummaTime);
-
-        // Firebase Database reference
-        mDatabase = FirebaseDatabase.getInstance().getReference("prayer_times");
-
-        // Firebase থেকে নামাজের সময় নিয়ে সেট করবো
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        // Listen for prayer times changes
+        prayerTimesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
@@ -110,18 +81,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(MainActivity.this, "ডেটা লোড করতে সমস্যা হয়েছে", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Firebase Authentication initialization
-        mAuth = FirebaseAuth.getInstance();
+        // Listen for monthly report data changes (realtime)
+        loadReportData();
 
-        emailInput = findViewById(R.id.emailInput);
-        passwordInput = findViewById(R.id.passwordInput);
-        loginButton = findViewById(R.id.loginButton);
-
+        // Login button click listener
         loginButton.setOnClickListener(v -> {
             String email = emailInput.getText().toString().trim();
             String password = passwordInput.getText().toString().trim();
@@ -144,24 +112,109 @@ public class MainActivity extends AppCompatActivity {
                     });
         });
 
-        // AdMob initialization
+        // Initialize AdMob (if you use it)
         RequestConfiguration configuration = new RequestConfiguration.Builder()
                 .setTestDeviceIds(Arrays.asList("CE1FDF3A2281C0F490245647207A6184"))
                 .build();
         MobileAds.setRequestConfiguration(configuration);
-        MobileAds.initialize(this, initializationStatus -> {
-            // Optional: handle initialization complete callback here if needed
-        });
-
-        // call_secratery init
-        call_secratery = findViewById(R.id.call_secratery);
-
+        MobileAds.initialize(this, status -> {});
     }
 
-    /**
-     * Firebase থেকে নামাজের সময় নিয়ে TextView ও AnalogClockView-এ সেট করার জন্য
-     */
-    private void setTimeFromSnapshot(DataSnapshot snapshot, String key, TextView textView, AnalogClockView AnalogClockView) {
+    private void initViews() {
+        fajrTime = findViewById(R.id.fajrTime);
+        dhuhrTime = findViewById(R.id.dhuhrTime);
+        asrTime = findViewById(R.id.asrTime);
+        maghribTime = findViewById(R.id.maghribTime);
+        ishaTime = findViewById(R.id.ishaTime);
+        jumaTime = findViewById(R.id.jummaTime);
+
+        analogueFajrTime = findViewById(R.id.analoguefajrTime);
+        analogueDhuhrTime = findViewById(R.id.analoguedhuhrTime);
+        analogueAsrTime = findViewById(R.id.analogueasrTime);
+        analogueMaghribTime = findViewById(R.id.analoguemaghribTime);
+        analogueIshaTime = findViewById(R.id.analogueishaTime);
+        analogueJummaTime = findViewById(R.id.analoguejummaTime);
+
+        monthly_chada = findViewById(R.id.monthly_chada);
+        first_week = findViewById(R.id.first_week);
+        second_week = findViewById(R.id.second_week);
+        third_week = findViewById(R.id.third_week);
+        fourth_week = findViewById(R.id.fourth_week);
+        misc_danbox = findViewById(R.id.misc_danbox);
+        total_income = findViewById(R.id.total_income);
+        imam_salary = findViewById(R.id.imam_salary);
+        muajjin_salary = findViewById(R.id.muajjin_salary);
+        electricity_bill = findViewById(R.id.electricity_bill);
+        misc_expence = findViewById(R.id.misc_expence);
+        total_expence = findViewById(R.id.total_expence);
+        cash_in_hand = findViewById(R.id.cash_in_hand);
+        dev_fund_income = findViewById(R.id.dev_fund_income);
+        kollan_fund_income = findViewById(R.id.kollan_fund_income);
+        current_balance = findViewById(R.id.current_balance);
+
+        emailInput = findViewById(R.id.emailInput);
+        passwordInput = findViewById(R.id.passwordInput);
+        loginButton = findViewById(R.id.loginButton);
+    }
+
+    private void loadReportData() {
+        monthlyReportRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                int monthlyChada = getInt(snapshot, "monthly_chada");
+                int week1 = getInt(snapshot, "first_week");
+                int week2 = getInt(snapshot, "second_week");
+                int week3 = getInt(snapshot, "third_week");
+                int week4 = getInt(snapshot, "fourth_week");
+                int danbox = getInt(snapshot, "misc_danbox");
+
+                int totalIncome = monthlyChada + week1 + week2 + week3 + week4 + danbox;
+
+                monthly_chada.setText(String.valueOf(monthlyChada));
+                first_week.setText(String.valueOf(week1));
+                second_week.setText(String.valueOf(week2));
+                third_week.setText(String.valueOf(week3));
+                fourth_week.setText(String.valueOf(week4));
+                misc_danbox.setText(String.valueOf(danbox));
+                total_income.setText(String.valueOf(totalIncome));
+
+                int imamSalary = getInt(snapshot, "imam_salary");
+                int muajjinSalary = getInt(snapshot, "muajjin_salary");
+                int electricity = getInt(snapshot, "electricity_bill");
+                int miscExpense = getInt(snapshot, "misc_expence");
+
+                int totalExpense = imamSalary + muajjinSalary + electricity + miscExpense;
+                int cashInHand = totalIncome - totalExpense;
+
+                imam_salary.setText(String.valueOf(imamSalary));
+                muajjin_salary.setText(String.valueOf(muajjinSalary));
+                electricity_bill.setText(String.valueOf(electricity));
+                misc_expence.setText(String.valueOf(miscExpense));
+                total_expence.setText(String.valueOf(totalExpense));
+                cash_in_hand.setText(String.valueOf(cashInHand));
+
+                dev_fund_income.setText(snapshot.child("dev_fund_income").getValue(String.class));
+                kollan_fund_income.setText(snapshot.child("kollan_fund_income").getValue(String.class));
+                current_balance.setText(snapshot.child("current_balance").getValue(String.class));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("Firebase", "Data load failed: " + error.getMessage());
+            }
+
+            private int getInt(DataSnapshot snapshot, String key) {
+                String value = snapshot.child(key).getValue(String.class);
+                try {
+                    return Integer.parseInt(value);
+                } catch (Exception e) {
+                    return 0;
+                }
+            }
+        });
+    }
+
+    private void setTimeFromSnapshot(DataSnapshot snapshot, String key, TextView textView, AnalogClockView analogueClockView) {
         String time = snapshot.child(key).getValue(String.class);
 
         if (time != null) {
@@ -169,7 +222,6 @@ public class MainActivity extends AppCompatActivity {
 
             if (time.contains(":")) {
                 try {
-                    // Parse time যেমন: "04:50 AM" অথবা "16:30"
                     String[] parts = time.trim().split("[: ]+");
                     int hour = Integer.parseInt(parts[0]);
                     int minute = Integer.parseInt(parts[1]);
@@ -181,8 +233,8 @@ public class MainActivity extends AppCompatActivity {
                         hour = 0;
                     }
 
-                    if (AnalogClockView != null) {
-                        AnalogClockView.setTime(hour, minute);
+                    if (analogueClockView != null) {
+                        analogueClockView.setTime(hour, minute);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -192,18 +244,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // কল করার জন্য permission চেক এবং কলিং মেথড গুলো
-
-    public void don1(View v) {
-        Toast.makeText(this, "ব্যাংকের মাধ্যমে দান করুন অথবা সভাপতি/সেক্রেটারীর সঙ্গে যোগাযোগ করুন।", Toast.LENGTH_LONG).show();
-    }
-
-    public void don2(View v) { don1(v); }
-    public void don3(View v) { don1(v); }
-    public void don4(View v) { don1(v); }
-    public void don5(View v) { don1(v); }
-
-    // সহ-সভাপতি কল
+    // Example call methods with permission check
     public void cosovapoti_calling(View v) {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:01711187317"));
@@ -215,7 +256,6 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(this, "আপনি সহ-সভাপতিকে ফোন দিয়েছেন।", Toast.LENGTH_LONG).show();
     }
 
-    // সাধারণ সম্পাদক কল
     public void secratery_calling(View v) {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:01716101240"));
@@ -239,4 +279,14 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
+
+    // Donation toast method example
+    public void don1(View v) {
+        Toast.makeText(this, "ব্যাংকের মাধ্যমে দান করুন অথবা সভাপতি/সেক্রেটারীর সঙ্গে যোগাযোগ করুন।", Toast.LENGTH_LONG).show();
+    }
+
+    public void don2(View v) { don1(v); }
+    public void don3(View v) { don1(v); }
+    public void don4(View v) { don1(v); }
+    public void don5(View v) { don1(v); }
 }

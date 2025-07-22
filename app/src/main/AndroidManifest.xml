@@ -24,6 +24,9 @@
         tools:ignore="GoogleAppIndexingWarning,RtlEnabled"
         tools:targetApi="donut">
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-6626454304064681~3880591107" />
 
 
 
@@ -35,9 +38,6 @@
         <activity android:name=".LoginActivity"
             android:exported="true"> </activity>
 
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-6626454304064681~3880591107" />
 
         <activity
             android:name=".SplashActivity"
