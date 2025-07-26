@@ -784,92 +784,10 @@
                                 android:layout_centerHorizontal="true"
                                 android:src="@drawable/shadow" />
 
-                            <LinearLayout
-                                android:id="@+id/gtm"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/gth2"
-                                android:orientation="horizontal">
-
-                                <HorizontalScrollView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="match_parent"
-                                        android:padding="5dp">
-
-                                        <TextView
-                                            android:layout_width="70dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginRight="5dp"
-                                            android:paddingTop="3dp"
-                                            android:text="Donate >"
-                                            android:textAlignment="center"
-                                            android:textColor="@color/Blue_with_80_Black"
-                                            android:textStyle="bold" />
-
-                                        <TextView
-                                            android:id="@+id/donaate1"
-                                            android:layout_width="70dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginRight="5dp"
-                                            android:onClick="don1"
-                                            android:paddingTop="3dp"
-                                            android:text="5000/-"
-                                            android:textAlignment="center" />
-
-                                        <TextView
-                                            android:id="@+id/donaate2"
-                                            android:layout_width="70dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginRight="5dp"
-                                            android:onClick="don2"
-                                            android:paddingTop="3dp"
-                                            android:text="1000/-"
-                                            android:textAlignment="center" />
-
-                                        <TextView
-                                            android:id="@+id/donaate3"
-                                            android:layout_width="70dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginRight="5dp"
-                                            android:onClick="don3"
-                                            android:paddingTop="3dp"
-                                            android:text="500/-"
-                                            android:textAlignment="center" />
-
-                                        <TextView
-                                            android:id="@+id/donaate4"
-                                            android:layout_width="70dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginRight="5dp"
-                                            android:onClick="don4"
-                                            android:paddingTop="3dp"
-                                            android:text="100/-"
-                                            android:textAlignment="center" />
-
-                                        <TextView
-                                            android:id="@+id/donaate5"
-                                            android:layout_width="70dp"
-                                            android:layout_height="wrap_content"
-                                            android:layout_marginRight="5dp"
-                                            android:onClick="don5"
-                                            android:paddingTop="3dp"
-                                            android:text="Others"
-                                            android:textAlignment="center" />
-
-                                    </LinearLayout>
-                                </HorizontalScrollView>
-
-
-                            </LinearLayout>
-
                             <RelativeLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_below="@+id/gtm"
+                                android:layout_below="@+id/gth2"
                                 android:layout_marginTop="5dp">
 
                                 <RelativeLayout
@@ -1050,37 +968,6 @@
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/gth3"
                                 android:orientation="horizontal">
-
-                                <HorizontalScrollView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="match_parent">
-
-                                    <LinearLayout
-                                        android:layout_width="match_parent"
-                                        android:layout_height="wrap_content">
-
-                                        <de.hdodenhof.circleimageview.CircleImageView
-                                            android:layout_width="60dp"
-                                            android:layout_height="60dp"
-                                            android:layout_marginRight="5dp" />
-
-                                        <de.hdodenhof.circleimageview.CircleImageView
-                                            android:layout_width="60dp"
-                                            android:layout_height="60dp"
-                                            android:layout_marginRight="5dp"/>
-
-                                        <de.hdodenhof.circleimageview.CircleImageView
-                                            android:layout_width="60dp"
-                                            android:layout_height="60dp"
-                                            android:layout_marginRight="5dp" />
-
-                                        <de.hdodenhof.circleimageview.CircleImageView
-                                            android:layout_width="60dp"
-                                            android:layout_height="60dp"
-                                            android:layout_marginRight="5dp" />
-
-                                    </LinearLayout>
-                                </HorizontalScrollView>
 
                             </LinearLayout>
 

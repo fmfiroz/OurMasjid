@@ -444,7 +444,7 @@
     <string name="muajjin_salary">মুয়াজ্জিনের বেতন</string>
     <string name="electricity_bill">বিদ্যুৎ বিল</string>
     <string name="misc_expence">অন্যান্য খরচ</string>
-    <string name="cash_in_hand">হাতে জমা (মোট আয় - মোট ব্যায়)</string>
+    <string name="cash_in_hand">হাতে জমা (আয় - ব্যায়)</string>
     <string name="dev_fund_income">উন্নয়ন খাতে আয়</string>
     <string name="kollan_fund_income">কল্যাণ ফান্ডে আয়</string>
     <string name="current_balance">বর্তমান স্থিতি</string>

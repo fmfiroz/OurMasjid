@@ -27,6 +27,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    LinearLayout ghosona1, mulniti1, gothontontro1, omorbani1, onumodon1, gth3;
+
     // Prayer time TextViews
     private TextView fajrTime, dhuhrTime, asrTime, maghribTime, ishaTime, jumaTime;
 
@@ -44,9 +46,6 @@ public class MainActivity extends AppCompatActivity {
     private TextView imam_salary, muajjin_salary, electricity_bill, misc_expence, total_expence;
     private TextView cash_in_hand, dev_fund_income, kollan_fund_income, current_balance;
 
-    // LinearLayouts for navigation
-    private LinearLayout ghosona1, mulniti1, gothontontro1, omorbani1, onumodon1;
-
     // Firebase references
     private DatabaseReference prayerTimesRef, monthlyReportRef;
 
@@ -54,6 +53,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // XML থেকে LinearLayout গুলো bind করা
+        ghosona1 = findViewById(R.id.ghosona1);
+        mulniti1 = findViewById(R.id.mulniti1);
+        gothontontro1 = findViewById(R.id.gothontontro1);
+        omorbani1 = findViewById(R.id.omorbani1);
+        onumodon1 = findViewById(R.id.onumodon1);
+        gth3 = findViewById(R.id.gth3);
+
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -113,6 +121,38 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
         });
+
+        // Click Listener গুলো সেট করা
+        ghosona1.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Ghosona.class);
+            startActivity(intent);
+        });
+
+        mulniti1.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Mulniti.class);
+            startActivity(intent);
+        });
+
+        gothontontro1.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, GothonTontro.class);
+            startActivity(intent);
+        });
+
+        omorbani1.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Omorbani.class);
+            startActivity(intent);
+        });
+
+        onumodon1.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Onumodon.class);
+            startActivity(intent);
+        });
+
+        gth3.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, Committee.class);
+            startActivity(intent);
+        });
+
     }
 
     private void initViews() {
@@ -226,17 +266,28 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.e("Firebase", "Data load failed: " + error.getMessage());
             }
-
+            // ⬇️ এটা আলাদা করে নিচে রাখো
             private int getInt(DataSnapshot snapshot, String key) {
-                String value = snapshot.child(key).getValue(String.class);
                 try {
-                    return Integer.parseInt(value);
+                    Object value = snapshot.child(key).getValue();
+
+                    if (value instanceof Long) {
+                        return ((Long) value).intValue();  // Firebase stores numbers as Long
+                    } else if (value instanceof String) {
+                        return Integer.parseInt((String) value);
+                    } else if (value != null) {
+                        return Integer.parseInt(value.toString());
+                    } else {
+                        return 0;
+                    }
                 } catch (Exception e) {
+                    Log.e("ParseError", "Key: " + key + ", Value: " + snapshot.child(key).getValue(), e);
                     return 0;
                 }
             }
         });
     }
+
 
     private void setTimeFromSnapshot(DataSnapshot snapshot, String key, TextView textView, AnalogClockView analogueClockView) {
         String time = snapshot.child(key).getValue(String.class);
@@ -324,4 +375,6 @@ public class MainActivity extends AppCompatActivity {
     public void don5(View v) {
         don1(v);
     }
+
 }
+
