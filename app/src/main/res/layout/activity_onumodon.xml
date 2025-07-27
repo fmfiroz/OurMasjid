@@ -6,18 +6,12 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/UltraLight_Ash"
-        tools:context="pnpmsjm.com.bd.ourmasjid_1.pnpmsjm.com.ourmasjid_1.Onumodon">
+        tools:context="pnpmsjm.com.ourmasjid.Onumodon">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
             android:layout_height="match_parent">
-
-
-
-
-
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -53,10 +47,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
+
                         <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/onumodon"/>
+                            android:id="@+id/OnumodonImage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/onumodon"
+                            android:scaleType="fitCenter"
+                            android:layout_gravity="center" />
 
 
                     </LinearLayout>

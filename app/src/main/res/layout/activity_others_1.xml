@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/Light_White"
-    tools:context="pnpmsjm.com.bd.ourmasjid_1.pnpmsjm.com.ourmasjid_1.Others_1">
-
+    android:background="@color/com_facebook_likeboxcountview_border_color"
+    context="pnpmsjm.com.ourmasjid.Others_1">
 
     <TextView
         android:id="@+id/developer_toast"
@@ -74,13 +73,7 @@
                     android:text="@string/firoz_mobile"/>
             </LinearLayout>
         </LinearLayout>
-        <WebView
-            android:id="@+id/mywebview"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </WebView>
     </LinearLayout>
 
 
-</android.support.design.widget.CoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

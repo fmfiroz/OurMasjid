@@ -534,7 +534,7 @@
                                     <!-- Row 3 -->
                                     <TableRow>
                                         <TextView
-                                            android:text="1"
+                                            android:text="১"
                                             android:textAlignment="center"
                                             android:padding="2dp"/>
                                         <TextView android:text="@string/monthly_chada" android:padding="2dp"/>
@@ -548,12 +548,13 @@
                                     <!-- Row 4 -->
                                     <TableRow>
                                         <TextView
-                                            android:text="2"
+                                            android:text="২"
                                             android:textAlignment="center"
                                             android:padding="2dp"/>
                                         <TextView android:text="@string/masjid_kouta" android:padding="2dp"/>
                                         <TextView
                                             android:text=""
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:padding="2dp"/>
                                     </TableRow>
@@ -564,6 +565,7 @@
                                         <TextView android:text="@string/first_week" android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/first_week"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:padding="2dp"/>
                                     </TableRow>
@@ -574,6 +576,7 @@
                                         <TextView android:text="@string/second_week" android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/second_week"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:padding="2dp"/>
                                     </TableRow>
@@ -584,6 +587,7 @@
                                         <TextView android:text="@string/third_week" android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/third_week"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:padding="2dp"/>
                                     </TableRow>
@@ -594,6 +598,7 @@
                                         <TextView android:text="@string/fourth_week" android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/fourth_week"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:padding="2dp"/>
                                     </TableRow>
@@ -601,12 +606,13 @@
                                     <!-- Row 9 -->
                                     <TableRow>
                                         <TextView
-                                            android:text="3"
+                                            android:text="৩"
                                             android:textAlignment="center"
                                             android:padding="2dp"/>
                                         <TextView android:text="@string/misc_danbox" android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/misc_danbox"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:padding="2dp"/>
                                     </TableRow>
@@ -624,6 +630,7 @@
                                             android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/total_income"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:textStyle="bold"
                                             android:padding="2dp"/>
@@ -663,12 +670,13 @@
                                     <!-- Row 13 -->
                                     <TableRow>
                                         <TextView
-                                            android:text="1"
+                                            android:text="১"
                                             android:textAlignment="center"
                                             android:padding="2dp"/>
                                         <TextView android:text="@string/imam_salary" android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/imam_salary"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:padding="2dp"/>
                                     </TableRow>
@@ -676,12 +684,13 @@
                                     <!-- Row 14 -->
                                     <TableRow>
                                         <TextView
-                                            android:text="2"
+                                            android:text="২"
                                             android:textAlignment="center"
                                             android:padding="2dp"/>
                                         <TextView android:text="@string/muajjin_salary" android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/muajjin_salary"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:padding="2dp"/>
                                     </TableRow>
@@ -689,12 +698,13 @@
                                     <!-- Row 15 -->
                                     <TableRow>
                                         <TextView
-                                            android:text="3"
+                                            android:text="৩"
                                             android:textAlignment="center"
                                             android:padding="2dp"/>
                                         <TextView android:text="@string/electricity_bill" android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/electricity_bill"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:padding="2dp"/>
                                     </TableRow>
@@ -702,12 +712,13 @@
                                     <!-- Row 16 -->
                                     <TableRow>
                                         <TextView
-                                            android:text="4"
+                                            android:text="৪"
                                             android:textAlignment="center"
                                             android:padding="2dp"/>
                                         <TextView android:text="@string/misc_expence" android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/misc_expence"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:padding="2dp"/>
                                     </TableRow>
@@ -723,6 +734,7 @@
                                             android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/total_expence"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:textStyle="bold"
                                             android:padding="2dp"/>
@@ -743,6 +755,7 @@
                                             android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/cash_in_hand"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:textStyle="bold"
                                             android:padding="2dp"/>
@@ -757,6 +770,7 @@
                                             android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/dev_fund_income"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:textStyle="bold"
                                             android:padding="2dp"/>
@@ -771,6 +785,7 @@
                                             android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/kollan_fund_income"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:textStyle="bold"
                                             android:padding="2dp"/>
@@ -790,6 +805,7 @@
                                             android:padding="2dp"/>
                                         <TextView
                                             android:id="@+id/current_balance"
+                                            android:layout_marginEnd="10dp"
                                             android:gravity="right"
                                             android:textStyle="bold"
                                             android:padding="2dp"/>
@@ -1000,14 +1016,8 @@
                                 android:id="@+id/gth3"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:gravity="center"
                                 android:orientation="horizontal">
-
-                                <LinearLayout
-                                    android:layout_width="10dp"
-                                    android:layout_height="10dp"
-                                    android:layout_gravity="center"
-                                    android:background="@color/Green_with_80_Black"></LinearLayout>
-
                                 <TextView
                                     android:id="@+id/members"
                                     android:layout_width="match_parent"
@@ -1020,6 +1030,7 @@
                                     android:text="@string/comiti"
                                     android:textColor="@color/Green_with_80_Black"
                                     android:textSize="20dp"
+                                    android:textAlignment="center"
                                     android:textStyle="bold" />
                             </LinearLayout>
 
@@ -1030,25 +1041,7 @@
                                 android:layout_centerHorizontal="true"
                                 android:src="@drawable/shadow" />
 
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_below="@+id/gth3"
-                                android:orientation="horizontal">
-
-                            </LinearLayout>
-
                         </RelativeLayout>
-
-
-                        <com.google.android.gms.ads.AdView
-                            xmlns:ads="http://schemas.android.com/apk/res-auto"
-                            android:id="@+id/adView"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            ads:adSize="BANNER"
-                            ads:adUnitId="ca-app-pub-6626454304064681/4284039493"/>
 
                     </LinearLayout>
                 </ScrollView>
