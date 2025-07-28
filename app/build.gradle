@@ -86,6 +86,7 @@ dependencies {
     implementation 'com.github.chrisbanes:PhotoView:2.3.0'
 
 
+
 }
 
     apply plugin: 'com.google.gms.google-services'

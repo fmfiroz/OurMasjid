@@ -1,6 +1,8 @@
 package pnpmsjm.com.ourmasjid;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,14 +52,28 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
             holder.tvDesignation.setVisibility(View.GONE);
         }
 
-        // Photo (with fallback image)
+        // Facebook Profile Photo (with fallback image)
         if (member.getPurl() != null && !member.getPurl().isEmpty()) {
+            String fbProfileUrl = "https://graph.facebook.com/" + member.getPurl() + "/picture?type=large";
+            String fbProfileLink = "https://facebook.com/" + member.getPurl();
+
             Picasso.get()
-                    .load(member.getPurl())
+                    .load(fbProfileUrl)
                     .placeholder(R.drawable.default_img)
                     .error(R.drawable.error_img)
                     .into(holder.imgPhoto);
+
             holder.imgPhoto.setVisibility(View.VISIBLE);
+
+            // 👉 OnClick listener to open Facebook profile
+            holder.imgPhoto.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(fbProfileLink));
+                    v.getContext().startActivity(intent);
+                }
+            });
+
         } else {
             holder.imgPhoto.setVisibility(View.GONE);
         }

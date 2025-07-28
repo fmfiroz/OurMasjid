@@ -1,61 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:orientation="vertical"
-android:padding="16dp"
-tools:context=".UpdatePrayerTimesActivity">
-
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="নামাজের সময় পরিবর্তন করুন"
-    android:textSize="24sp"
-    android:textStyle="bold"
-    android:layout_marginBottom="24dp"/>
-
-<EditText
-    android:id="@+id/editFajr"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="ফজর নামাজের সময় (যেমন: 04:30 AM)"
-    android:layout_marginBottom="12dp"/>
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".UpdatePrayerTimesActivity">
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-<EditText
-    android:id="@+id/editDhuhr"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="যোহর নামাজের সময় (যেমন: 01:00 PM)"
-    android:layout_marginBottom="12dp"/>
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/change_prayer_time_title"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginBottom="24dp"/>
 
-<EditText
-    android:id="@+id/editAsr"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="আসর নামাজের সময় (যেমন: 04:30 PM)"
-    android:layout_marginBottom="12dp"/>
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="2"
+        android:orientation="horizontal"
+        android:useDefaultMargins="true">
 
-<EditText
-    android:id="@+id/editMaghrib"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="মাগরিব নামাজের সময় (যেমন: 06:45 PM)"
-    android:layout_marginBottom="12dp"/>
+        <!-- Box 1 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fajr"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/editFajr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:autofillHints="Change"
+                android:inputType="text"
+                android:hint="04:30 AM"/>
+        </LinearLayout>
 
-<EditText
-    android:id="@+id/editIsha"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="এশা নামাজের সময় (যেমন: 08:15 PM)"
-    android:layout_marginBottom="12dp"/>
+        <!-- Box 2 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dhuhr"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/editDhuhr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:autofillHints="Change"
+                android:inputType="text"
+                android:hint="01:00 PM"/>
+        </LinearLayout>
 
-<EditText
-    android:id="@+id/editJuma"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:hint="জুমআ নামাজের সময় (যেমন: 01:30 PM)"
-    android:layout_marginBottom="24dp"/>
+        <!-- Box 3 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/asr"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/editAsr"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:autofillHints="Change"
+                android:inputType="text"
+                android:hint="04:30 PM"/>
+        </LinearLayout>
+
+        <!-- Box 4 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/maghrib"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/editMaghrib"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:autofillHints="Change"
+                android:inputType="text"
+                android:hint=" 06:45 PM"/>
+        </LinearLayout>
+
+        <!-- Box 5 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/isha"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/editIsha"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:autofillHints="Change"
+                android:inputType="text"
+                android:hint="08:15 PM"/>
+        </LinearLayout>
+
+        <!-- Box 6 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_columnWeight="1"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/jumma"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/editJuma"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:autofillHints="Change"
+                android:inputType="text"
+                android:hint="01:30 PM"/>
+        </LinearLayout>
+
+    </GridLayout>
 
 <Button
     android:id="@+id/saveButton"
@@ -63,5 +196,386 @@ tools:context=".UpdatePrayerTimesActivity">
     android:layout_height="wrap_content"
     android:text="সময় সংরক্ষণ করুন"
     android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            android:shrinkColumns="*"
+            android:padding="2dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/monthly_income_expence"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:textStyle="bold"/>
+
+            <!-- Row 1 -->
+            <TableRow>
+                <TextView
+                    android:text="@string/total_income"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_span="3"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 2 -->
+            <TableRow>
+                <TextView
+                    android:text="@string/ser"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:padding="2dp"/>
+                <TextView
+                    android:text="@string/various_income"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:padding="2dp"/>
+                <TextView
+                    android:text="@string/total_taka"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 3 -->
+            <TableRow>
+                <TextView
+                    android:text="১"
+                    android:textAlignment="center"
+                    android:padding="2dp"/>
+                <TextView
+                    android:text="@string/monthly_chada"
+                    android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_monthly_chada"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 4 -->
+            <TableRow>
+                <TextView
+                    android:text="২"
+                    android:textAlignment="center"
+                    android:padding="2dp"/>
+                <TextView android:text="@string/masjid_kouta" android:padding="2dp"/>
+                <TextView
+                    android:text=""
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 5 -->
+            <TableRow>
+                <TextView android:text="" android:padding="2dp"/>
+                <TextView android:text="@string/first_week" android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_first_week"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 6 -->
+            <TableRow>
+                <TextView android:text="" android:padding="2dp"/>
+                <TextView android:text="@string/second_week" android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_second_week"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 7 -->
+            <TableRow>
+                <TextView android:text="" android:padding="2dp"/>
+                <TextView android:text="@string/third_week" android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_third_week"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 8 -->
+            <TableRow>
+                <TextView android:text="" android:padding="2dp"/>
+                <TextView android:text="@string/fourth_week" android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_fourth_week"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 9 -->
+            <TableRow>
+                <TextView
+                    android:text="৩"
+                    android:textAlignment="center"
+                    android:padding="2dp"/>
+                <TextView android:text="@string/misc_danbox" android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_misc_danbox"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Dark_Ash"/>
+
+            <!-- Row 10 -->
+            <TableRow>
+                <TextView android:text="" android:padding="2dp"/>
+                <TextView
+                    android:text="@string/total_income"
+                    android:textStyle="bold"
+                    android:padding="2dp"/>
+                <TextView
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:text="Auto Sum"
+                    android:textStyle="bold"
+                    android:padding="2dp"/>
+            </TableRow>
+
+
+            <!-- Row 11 -->
+            <TableRow>
+                <TextView
+                    android:text="@string/total_expence"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_span="3"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 12 -->
+            <TableRow>
+                <TextView
+                    android:text="@string/ser"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:padding="2dp"/>
+                <TextView
+                    android:text="@string/various_expence"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:padding="2dp"/>
+                <TextView
+                    android:text="@string/total_taka"
+                    android:textAlignment="center"
+                    android:textStyle="bold"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 13 -->
+            <TableRow>
+                <TextView
+                    android:text="১"
+                    android:textAlignment="center"
+                    android:padding="2dp"/>
+                <TextView android:text="@string/imam_salary" android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_imam_salary"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 14 -->
+            <TableRow>
+                <TextView
+                    android:text="২"
+                    android:textAlignment="center"
+                    android:padding="2dp"/>
+                <TextView
+                    android:text="@string/muajjin_salary"
+                    android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_muajjin_salary"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 15 -->
+            <TableRow>
+                <TextView
+                    android:text="৩"
+                    android:textAlignment="center"
+                    android:padding="2dp"/>
+                <TextView android:text="@string/electricity_bill" android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_electricity_bill"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+
+            <!-- Row 16 -->
+            <TableRow>
+                <TextView
+                    android:text="৪"
+                    android:textAlignment="center"
+                    android:padding="2dp"/>
+                <TextView
+                    android:text="@string/misc_expence"
+                    android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_misc_expence"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Dark_Ash"/>
+            <!-- Row 17 -->
+            <TableRow>
+                <TextView android:text="" android:padding="2dp"/>
+                <TextView android:text="@string/total_expence"
+                    android:textStyle="bold"
+                    android:padding="2dp"/>
+                <TextView
+                    android:id="@+id/edit_total_expence"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:text="Auto Sum"
+                    android:textStyle="bold"
+                    android:padding="2dp"/>
+            </TableRow>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Dark_Ash"/>
+
+
+            <!-- Row 18 -->
+            <TableRow>
+                <TextView
+                    android:text="@string/cash_in_hand"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_span="2"
+                    android:padding="2dp"/>
+                <TextView
+                    android:id="@+id/edit_cash_in_hand"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:text="Auto Sum"
+                    android:textStyle="bold"
+                    android:autofillHints="Change"
+                    android:padding="2dp"/>
+            </TableRow>
+            <!-- Row 19 -->
+            <TableRow>
+                <TextView
+                    android:text="@string/dev_fund_income"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_span="2"
+                    android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_dev_fund_income"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:textStyle="bold"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+            <!-- Row 20 -->
+            <TableRow>
+                <TextView
+                    android:text="@string/kollan_fund_income"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_span="2"
+                    android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_kollan_fund_income"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:textStyle="bold"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/Dark_Ash"/>
+
+            <!-- Row 21 -->
+            <TableRow>
+                <TextView
+                    android:text="@string/current_balance"
+                    android:textStyle="bold"
+                    android:textSize="15sp"
+                    android:layout_span="2"
+                    android:padding="2dp"/>
+                <EditText
+                    android:id="@+id/edit_current_balance"
+                    android:layout_marginEnd="10dp"
+                    android:gravity="end"
+                    android:textStyle="bold"
+                    android:autofillHints="Change"
+                    android:inputType="numberDecimal"
+                    android:padding="2dp"/>
+            </TableRow>
+
+        </TableLayout>
+
+        <Button
+            android:id="@+id/hisabsaveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="হিসাব সংরক্ষণ করুন"
+            android:layout_marginBottom="24dp"
+            android:layout_gravity="center_horizontal"/>
+
+
+
+    </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

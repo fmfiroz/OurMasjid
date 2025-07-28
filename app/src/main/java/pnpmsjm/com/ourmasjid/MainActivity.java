@@ -323,6 +323,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     // Example call methods with permission check
+
+    public void sovapoti_calling(View v) {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:01711187317"));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, 1);
+            return;
+        }
+        startActivity(callIntent);
+        Toast.makeText(this, "আপনি সভাপতিকে ফোন দিয়েছেন।", Toast.LENGTH_LONG).show();
+    }
+
     public void cosovapoti_calling(View v) {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:01711187317"));
@@ -356,27 +368,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "কল করার অনুমতি বাতিল হয়েছে।", Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    // Donation toast method example
-    public void don1(View v) {
-        Toast.makeText(this, "ব্যাংকের মাধ্যমে দান করুন অথবা সভাপতি/সেক্রেটারীর সঙ্গে যোগাযোগ করুন।", Toast.LENGTH_LONG).show();
-    }
-
-    public void don2(View v) {
-        don1(v);
-    }
-
-    public void don3(View v) {
-        don1(v);
-    }
-
-    public void don4(View v) {
-        don1(v);
-    }
-
-    public void don5(View v) {
-        don1(v);
     }
 
 }

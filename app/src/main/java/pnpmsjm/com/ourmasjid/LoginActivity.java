@@ -27,11 +27,26 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // আপনার XML লেআউট ফাইলের নাম
 
+        // User chek
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null) {
+            // ইউজার আগে থেকেই লগ ইন করা আছে
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        } else {
+            // ইউজার নেই, Login screen দেখাও
+            Intent intent = new Intent(LoginActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         // UI উপাদানগুলি ইনিশিয়ালাইজ করুন
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
         loginButton = findViewById(R.id.loginButton);
-        registerButton = findViewById(R.id.registerButton); // registerButton ইনিশিয়ালাইজ করুন
 
         // FirebaseAuth ইনস্ট্যান্স পান
         mAuth = FirebaseAuth.getInstance();
