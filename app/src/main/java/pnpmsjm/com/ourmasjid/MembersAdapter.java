@@ -6,12 +6,15 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -19,12 +22,16 @@ import java.util.List;
 public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHolder> {
 
     private Context context;
+
     private List<Members> membersList;
+
+
 
     public MembersAdapter(Context context, List<Members> memberList) {
         this.context = context;
         this.membersList = memberList;
     }
+
 
     @NonNull
     @Override
@@ -32,6 +39,8 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_members, parent, false);
         return new ViewHolder(view);
+
+
     }
 
     @Override
@@ -44,48 +53,34 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
         // Mobile
         holder.tvMobile.setText(member.getMobile_No() != null ? member.getMobile_No() : "No Number");
 
-        // Designation (with visibility control)
-        if (member.getDesignation() != null && !member.getDesignation().isEmpty()) {
-            holder.tvDesignation.setText(member.getDesignation());
-            holder.tvDesignation.setVisibility(View.VISIBLE);
-        } else {
-            holder.tvDesignation.setVisibility(View.GONE);
-        }
+        // Designation
+        holder.tvDesignation.setText(member.getDesignation() != null ? member.getDesignation() : "No Designation");
 
-        // Facebook Profile Photo (with fallback image)
         if (member.getPurl() != null && !member.getPurl().isEmpty()) {
-            String fbProfileUrl = "https://graph.facebook.com/" + member.getPurl() + "/picture?type=large";
-            String fbProfileLink = "https://facebook.com/" + member.getPurl();
-
-            Picasso.get()
-                    .load(fbProfileUrl)
+            Glide.with(holder.imgPhoto.getContext())
+                    .load(member.getPurl())
                     .placeholder(R.drawable.default_img)
                     .error(R.drawable.error_img)
                     .into(holder.imgPhoto);
-
-            holder.imgPhoto.setVisibility(View.VISIBLE);
-
-            // 👉 OnClick listener to open Facebook profile
-            holder.imgPhoto.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(fbProfileLink));
-                    v.getContext().startActivity(intent);
-                }
-            });
-
         } else {
-            holder.imgPhoto.setVisibility(View.GONE);
+            holder.imgPhoto.setImageResource(R.drawable.default_img);
         }
 
-        // Toggle designation on name click
-        holder.tvName.setOnClickListener(v -> {
-            if (holder.tvDesignation.getVisibility() == View.GONE) {
-                holder.tvDesignation.setVisibility(View.VISIBLE);
-            } else {
-                holder.tvDesignation.setVisibility(View.GONE);
+        // Call button
+        holder.btnCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String phone = member.getMobile_No();
+                if (phone != null && !phone.isEmpty()) {
+                    Intent intent = new Intent(Intent.ACTION_DIAL);
+                    intent.setData(Uri.parse("tel:" + phone));
+                    context.startActivity(intent);
+                } else {
+                    Toast.makeText(context, "No phone number available", Toast.LENGTH_SHORT).show();
+                }
             }
         });
+
     }
 
     @Override
@@ -96,6 +91,7 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvDesignation, tvMobile;
         ImageView imgPhoto;
+        Button btnCall;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -103,6 +99,7 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
             tvDesignation = itemView.findViewById(R.id.tvDesignation);
             tvMobile = itemView.findViewById(R.id.tvMobile);
             imgPhoto = itemView.findViewById(R.id.imgPhoto);
+            btnCall = itemView.findViewById(R.id.btnCall);
         }
     }
 }
