@@ -70,8 +70,7 @@
             android:id="@+id/btnCall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Call"
-            android:drawableStart="@android:drawable/ic_menu_call"
+            android:drawableEnd="@android:drawable/ic_menu_call"
             android:padding="8dp"
             android:textSize="14sp"/>
 
