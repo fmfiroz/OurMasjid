@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -91,7 +92,7 @@ public class MembersAdapter extends RecyclerView.Adapter<MembersAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvName, tvDesignation, tvMobile;
         ImageView imgPhoto;
-        Button btnCall;
+        ImageButton btnCall;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
