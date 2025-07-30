@@ -25,6 +25,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
 
     // LinearLayouts for navigation
@@ -42,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
     private Button loginButton;
     private FirebaseAuth mAuth;
 
+    // নতুন যোগ করা বাটন:
+    private Button updatePrayerTimesButton; // <-- নতুন বাটন ভ্যারিয়েবল
+
     // Monthly report TextViews
     private TextView month_year; // month_year TextView (must be in your layout)
     private TextView monthly_chada, first_week, second_week, third_week, fourth_week, misc_danbox, total_income;
@@ -49,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView cash_in_hand, dev_fund_income, kollan_fund_income, current_balance;
 
     // Firebase references
-    private DatabaseReference prayerTimesRef, monthlyReportRootRef; // Changed to monthlyReportRootRef
+    private DatabaseReference prayerTimesRef, monthlyReportRootRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize database references
         prayerTimesRef = FirebaseDatabase.getInstance().getReference("prayer_times");
-        monthlyReportRootRef = FirebaseDatabase.getInstance().getReference("monthly_report"); // Root reference
+        monthlyReportRootRef = FirebaseDatabase.getInstance().getReference("monthly_report");
 
         // Initialize Views
         initViews();
@@ -98,25 +105,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Load current month/year to TextView first, then load report data
-        // Order by key and limit to last 1 to get the latest month/year
+        // Firebase থেকে সর্বশেষ মাস/বছরের ডেটা লোড করার জন্য
         monthlyReportRootRef.orderByKey().limitToLast(1).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
                     for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                        String monthYearKey = childSnapshot.getKey(); // e.g. "July_2025"
+                        String monthYearKey = childSnapshot.getKey();
                         if (monthYearKey != null) {
-                            // Set the TextView with readable format (e.g., "July 2025")
-                            month_year.setText(monthYearKey.replace("_", " "));
-                            // Now load the monthly report data for this specific month/year
+                            String[] parts = monthYearKey.split("_");
+                            if (parts.length == 3) {
+                                String monthNameDisplay = parts[2].substring(0, 1).toUpperCase() + parts[2].substring(1);
+                                month_year.setText(monthNameDisplay + " " + parts[0]);
+                            } else {
+                                month_year.setText(monthYearKey.replace("_", " "));
+                            }
                             loadReportData(monthYearKey);
                         }
                     }
                 } else {
-                    // Handle case where no monthly report data exists
                     month_year.setText("মাস/বছর পাওয়া যায়নি");
                     Toast.makeText(MainActivity.this, "কোনো মাসিক রিপোর্ট ডেটা পাওয়া যায়নি।", Toast.LENGTH_SHORT).show();
+                    setAllReportTextViewsToZero();
                 }
             }
 
@@ -124,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(MainActivity.this, "মাস/বছর লোড করতে ব্যর্থ: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                 Log.e("Firebase", "Month/Year data load failed: " + error.getMessage());
+                setAllReportTextViewsToZero();
             }
         });
 
@@ -142,12 +153,25 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(MainActivity.this, "লগইন সফল: " + user.getEmail(), Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(MainActivity.this, UpdatePrayerTimesActivity.class));
-                            finish();
+                            // লগইন সফল হলে সরাসরি অন্য অ্যাক্টিভিটিতে না গিয়ে বাটনটি দৃশ্যমান করুন
+                            loginButton.setVisibility(View.GONE); // লগইন বাটন লুকানো
+                            emailInput.setVisibility(View.GONE); // ইমেল ইনপুট লুকানো
+                            passwordInput.setVisibility(View.GONE); // পাসওয়ার্ড ইনপুট লুকানো
+                            updatePrayerTimesButton.setVisibility(View.VISIBLE); // নতুন বাটন দৃশ্যমান
+                            // এখানে MainActivity শেষ করবেন না, যাতে বাটনটি দেখা যায়
                         } else {
                             Toast.makeText(MainActivity.this, "লগইন ব্যর্থ: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            // লগইন ব্যর্থ হলে বাটনটি হাইডই থাকবে
+                            updatePrayerTimesButton.setVisibility(View.GONE);
                         }
                     });
+        });
+
+        // নতুন বাটনের জন্য OnClickListener সেট করুন
+        updatePrayerTimesButton.setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, UpdatePrayerTimesActivity.class));
+            // আপনি চাইলে UpdatePrayerTimesActivity তে যাওয়ার পর MainActivity শেষ করতে পারেন
+            // finish();
         });
     }
 
@@ -166,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         analogueIshaTime = findViewById(R.id.analogueishaTime);
         analogueJummaTime = findViewById(R.id.analoguejummaTime);
 
-        month_year = findViewById(R.id.month_year); // Initialize month_year TextView here
+        month_year = findViewById(R.id.month_year);
 
         monthly_chada = findViewById(R.id.monthly_chada);
         first_week = findViewById(R.id.first_week);
@@ -188,10 +212,10 @@ public class MainActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
         loginButton = findViewById(R.id.loginButton);
+        updatePrayerTimesButton = findViewById(R.id.updatePrayerTimesButton); // <-- নতুন বাটন ইনিশিয়ালাইজ করুন
     }
 
     private void setupLinearLayoutClicks() {
-        // Ensure these IDs exist in your activity_main.xml and corresponding Activities are created
         if (ghosona1 != null) {
             ghosona1.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Ghosona.class)));
         }
@@ -208,22 +232,19 @@ public class MainActivity extends AppCompatActivity {
             onumodon1.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Onumodon.class)));
         }
         if (gth3 != null) {
-            // Make sure "CommitteeActivity.class" matches your actual committee activity class name
             gth3.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Committee.class)));
         }
     }
 
-    // Monthly report data loading method, now takes monthYearKey as parameter
     private void loadReportData(String monthYearKey) {
         if (monthYearKey == null || monthYearKey.isEmpty()) {
             Toast.makeText(this, "মাস এবং বছর পাওয়া যায়নি, রিপোর্ট লোড করা যাচ্ছে না।", Toast.LENGTH_SHORT).show();
+            setAllReportTextViewsToZero();
             return;
         }
 
-        // Create a specific reference to the monthly report for the fetched month/year
         DatabaseReference specificMonthlyReportRef = monthlyReportRootRef.child(monthYearKey);
 
-        // Using addValueEventListener for real-time updates for the report
         specificMonthlyReportRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -260,30 +281,12 @@ public class MainActivity extends AppCompatActivity {
                     total_expence.setText(String.valueOf(totalExpense));
                     cash_in_hand.setText(String.valueOf(cashInHand));
 
-                    // Safely get String values, providing default if null
                     dev_fund_income.setText(snapshot.child("dev_fund_income").getValue(String.class) != null ? snapshot.child("dev_fund_income").getValue(String.class) : "0");
                     kollan_fund_income.setText(snapshot.child("kollan_fund_income").getValue(String.class) != null ? snapshot.child("kollan_fund_income").getValue(String.class) : "0");
                     current_balance.setText(snapshot.child("current_balance").getValue(String.class) != null ? snapshot.child("current_balance").getValue(String.class) : "0");
 
                 } else {
-                    // Set all TextViews to 0 or appropriate default if data for this month doesn't exist
-                    monthly_chada.setText("0");
-                    first_week.setText("0");
-                    second_week.setText("0");
-                    third_week.setText("0");
-                    fourth_week.setText("0");
-                    misc_danbox.setText("0");
-                    total_income.setText("0");
-                    imam_salary.setText("0");
-                    muajjin_salary.setText("0");
-                    electricity_bill.setText("0");
-                    misc_expence.setText("0");
-                    total_expence.setText("0");
-                    cash_in_hand.setText("0");
-                    dev_fund_income.setText("0");
-                    kollan_fund_income.setText("0");
-                    current_balance.setText("0");
-
+                    setAllReportTextViewsToZero();
                     Toast.makeText(MainActivity.this, monthYearKey.replace("_", " ") + " মাসের হিসাব পাওয়া যায়নি", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -292,42 +295,58 @@ public class MainActivity extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.e("Firebase", "Monthly report data load failed for " + monthYearKey + ": " + error.getMessage());
                 Toast.makeText(MainActivity.this, "মাসিক রিপোর্ট লোড ব্যর্থ: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                setAllReportTextViewsToZero();
             }
         });
     }
 
-    // Helper method to get integer values from DataSnapshot safely
     private int getInt(DataSnapshot snapshot, String key) {
         try {
             Object value = snapshot.child(key).getValue();
             if (value instanceof Long) {
-                return ((Long) value).intValue(); // Firebase stores numbers as Long
+                return ((Long) value).intValue();
             } else if (value instanceof String) {
                 return Integer.parseInt((String) value);
             } else if (value != null) {
-                // Try converting other types to String and then parse
                 return Integer.parseInt(value.toString());
             } else {
-                return 0; // Default to 0 if value is null
+                return 0;
             }
         } catch (Exception e) {
             Log.e("ParseError", "Error parsing integer for key: " + key + ", Value: " + snapshot.child(key).getValue(), e);
-            return 0; // Default to 0 on parsing error
+            return 0;
         }
+    }
+
+    private void setAllReportTextViewsToZero() {
+        monthly_chada.setText("0");
+        first_week.setText("0");
+        second_week.setText("0");
+        third_week.setText("0");
+        fourth_week.setText("0");
+        misc_danbox.setText("0");
+        total_income.setText("0");
+        imam_salary.setText("0");
+        muajjin_salary.setText("0");
+        electricity_bill.setText("0");
+        misc_expence.setText("0");
+        total_expence.setText("0");
+        cash_in_hand.setText("0");
+        dev_fund_income.setText("0");
+        kollan_fund_income.setText("0");
+        current_balance.setText("0");
     }
 
     private void setTimeFromSnapshot(DataSnapshot snapshot, String key, TextView textView, AnalogClockView analogueClockView) {
         String time = snapshot.child(key).getValue(String.class);
         if (time != null) {
             textView.setText(time);
-            if (analogueClockView != null) { // Ensure analogueClockView is not null before using it
-                // Pass the raw time string to setPrayerTime, assuming it handles parsing
+            if (analogueClockView != null) {
                 analogueClockView.setPrayerTime(time);
             }
         }
     }
 
-    // Example call methods with permission check
     public void cosovapoti_calling(View v) {
         Intent callIntent = new Intent(Intent.ACTION_CALL);
         callIntent.setData(Uri.parse("tel:01711187317"));
@@ -363,7 +382,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // Donation toast method example
     public void don1(View v) {
         Toast.makeText(this, "ব্যাংকের মাধ্যমে দান করুন অথবা সভাপতি/সেক্রেটারীর সঙ্গে যোগাযোগ করুন।", Toast.LENGTH_LONG).show();
     }
