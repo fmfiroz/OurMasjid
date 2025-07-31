@@ -7,7 +7,7 @@ public class Members {
     private String Purl;
 
     public Members() {
-        // Firestore এর জন্য ডিফল্ট কনস্ট্রাক্টর
+        // Firebase-এর জন্য প্রয়োজনীয় ডিফল্ট কনস্ট্রাক্টর
     }
 
     public Members(String Name, String Designation, String Mobile_No, String Purl) {
@@ -21,15 +21,31 @@ public class Members {
         return Name;
     }
 
+    public void setName(String name) {
+        this.Name = name;
+    }
+
     public String getDesignation() {
         return Designation;
+    }
+
+    public void setDesignation(String designation) {
+        this.Designation = designation;
     }
 
     public String getMobile_No() {
         return Mobile_No;
     }
 
+    public void setMobile_No(String mobile_No) {
+        this.Mobile_No = mobile_No;
+    }
+
     public String getPurl() {
         return Purl;
+    }
+
+    public void setPurl(String purl) {
+        this.Purl = purl;
     }
 }
