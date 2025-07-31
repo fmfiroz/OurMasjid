@@ -1,6 +1,7 @@
 package pnpmsjm.com.ourmasjid;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -62,6 +64,46 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ImageButton fbPageBtn = findViewById(R.id.fb_page);
+
+        fbPageBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String facebookUrl = "fb://facewebmodal/f?href=https://www.facebook.com/pnpmsjm";
+
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(facebookUrl));
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                try {
+                    startActivity(intent);
+                } catch (Exception e) {
+                    // যদি FB অ্যাপ না থাকে, তাহলে ব্রাউজারে খুলবে
+                    Intent webIntent = new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://www.facebook.com/pnpmsjm"));
+                    startActivity(webIntent);
+                }
+            }
+        });
+        ImageButton shareapp = findViewById(R.id.share_app);
+        shareapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Our Masjid App");
+
+                    String shareMessage = "আমাদের মসজিদের অ্যাপটি ডাউনলোড করুন!\n\n";
+                    shareMessage += "https://play.google.com/store/apps/details?id=" + getPackageName();
+
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                    startActivity(Intent.createChooser(shareIntent, "Share via"));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
@@ -165,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
                             updatePrayerTimesButton.setVisibility(View.GONE);
                         }
                     });
+
         });
 
         // নতুন বাটনের জন্য OnClickListener সেট করুন

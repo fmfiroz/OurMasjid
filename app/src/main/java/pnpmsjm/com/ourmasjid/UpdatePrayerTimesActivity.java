@@ -1,6 +1,9 @@
 package pnpmsjm.com.ourmasjid;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,11 +24,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Calendar; // For current year
+import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Locale; // For consistent month names
+import java.util.Locale;
 import java.util.Map;
-import java.text.SimpleDateFormat; // For formatting month numbers
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
+import java.util.Date; // Import Date class
 
 public class UpdatePrayerTimesActivity extends AppCompatActivity {
 
@@ -38,7 +43,7 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
     private Button saveButton, hisabsaveButton;
 
     private DatabaseReference prayerDbRef;
-    private DatabaseReference monthlyReportDbRef; // New reference for monthly report
+    private DatabaseReference monthlyReportDbRef;
     private FirebaseAuth mAuth;
 
     private String[] months = {"January", "February", "March", "April", "May", "June",
@@ -55,16 +60,14 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
             Toast.makeText(this, "অনুগ্রহ করে লগইন করুন", Toast.LENGTH_SHORT).show();
-            // Optionally redirect to login screen
-            finish(); // Close this activity if user is not logged in
+            finish();
             return;
         }
 
-        // Spinner initialization
         monthSpinner = findViewById(R.id.monthSpinner);
         yearSpinner = findViewById(R.id.yearSpinner);
 
-        String[] years = getYearsArray(); // Dynamically generate years
+        String[] years = getYearsArray();
 
         ArrayAdapter<String> monthAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, months);
         monthAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -74,9 +77,8 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         yearSpinner.setAdapter(yearAdapter);
 
-        // Set current month and year as default selection
         Calendar calendar = Calendar.getInstance();
-        int currentMonth = calendar.get(Calendar.MONTH); // 0-indexed (Jan=0)
+        int currentMonth = calendar.get(Calendar.MONTH);
         int currentYear = calendar.get(Calendar.YEAR);
 
         monthSpinner.setSelection(currentMonth);
@@ -88,8 +90,6 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
             }
         }
 
-
-        // Prayer Time Inputs
         editFajr = findViewById(R.id.editFajr);
         editDhuhr = findViewById(R.id.editDhuhr);
         editAsr = findViewById(R.id.editAsr);
@@ -97,7 +97,14 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
         editIsha = findViewById(R.id.editIsha);
         editJuma = findViewById(R.id.editJuma);
 
-        // Monthly Hisab Inputs
+        applyPrayerTimeInputFilter(editFajr);
+        applyPrayerTimeInputFilter(editDhuhr);
+        applyPrayerTimeInputFilter(editAsr);
+        applyPrayerTimeInputFilter(editMaghrib);
+        applyPrayerTimeInputFilter(editIsha);
+        applyPrayerTimeInputFilter(editJuma);
+
+
         edit_monthly_chada = findViewById(R.id.edit_monthly_chada);
         edit_first_week = findViewById(R.id.edit_first_week);
         edit_second_week = findViewById(R.id.edit_second_week);
@@ -113,63 +120,53 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
         edit_kollan_fund_income = findViewById(R.id.edit_kollan_fund_income);
         edit_current_balance = findViewById(R.id.edit_current_balance);
 
-        // Buttons
-        saveButton = findViewById(R.id.saveButton); // Prayer times save button
-        hisabsaveButton = findViewById(R.id.hisabsaveButton); // Monthly hisab save button
+        saveButton = findViewById(R.id.saveButton);
+        hisabsaveButton = findViewById(R.id.hisabsaveButton);
 
-        // Firebase DB references
         prayerDbRef = FirebaseDatabase.getInstance().getReference("prayer_times");
-        monthlyReportDbRef = FirebaseDatabase.getInstance().getReference("monthly_report"); // Initialize new ref
+        monthlyReportDbRef = FirebaseDatabase.getInstance().getReference("monthly_report");
 
-        loadCurrentPrayerTimes(); // Load prayer times on activity start
+        loadCurrentPrayerTimes();
 
-        // --- Add Spinner Listeners for Monthly Hisab Loading ---
         AdapterView.OnItemSelectedListener spinnerListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // This will be called when either spinner's selection changes
                 loadMonthlyHisab();
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                // Do nothing
             }
         };
 
         monthSpinner.setOnItemSelectedListener(spinnerListener);
         yearSpinner.setOnItemSelectedListener(spinnerListener);
-        // --- End Spinner Listeners ---
 
         saveButton.setOnClickListener(v -> savePrayerTimes());
         hisabsaveButton.setOnClickListener(v -> saveMonthlyHisab());
 
-        // Load monthly hisab after spinners are initialized and possibly set to current date
-        // (This initial load is important to show data for the default selected month/year)
         loadMonthlyHisab();
     }
 
     private String[] getYearsArray() {
         int currentYear = Calendar.getInstance().get(Calendar.YEAR);
-        String[] years = new String[7]; // From current year -2 to current year +4
+        String[] years = new String[7];
         for (int i = 0; i < 7; i++) {
             years[i] = String.valueOf(currentYear - 2 + i);
         }
         return years;
     }
 
-
     private void loadCurrentPrayerTimes() {
         prayerDbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                // Using ternary operator to provide default empty string if value is null
-                editFajr.setText(snapshot.child("fajr").getValue(String.class) != null ? snapshot.child("fajr").getValue(String.class) : "");
-                editDhuhr.setText(snapshot.child("dhuhr").getValue(String.class) != null ? snapshot.child("dhuhr").getValue(String.class) : "");
-                editAsr.setText(snapshot.child("asr").getValue(String.class) != null ? snapshot.child("asr").getValue(String.class) : "");
-                editMaghrib.setText(snapshot.child("maghrib").getValue(String.class) != null ? snapshot.child("maghrib").getValue(String.class) : "");
-                editIsha.setText(snapshot.child("isha").getValue(String.class) != null ? snapshot.child("isha").getValue(String.class) : "");
-                editJuma.setText(snapshot.child("juma").getValue(String.class) != null ? snapshot.child("juma").getValue(String.class) : "");
+                editFajr.setText(removeAmPm(snapshot.child("fajr").getValue(String.class)));
+                editDhuhr.setText(removeAmPm(snapshot.child("dhuhr").getValue(String.class)));
+                editAsr.setText(removeAmPm(snapshot.child("asr").getValue(String.class)));
+                editMaghrib.setText(removeAmPm(snapshot.child("maghrib").getValue(String.class)));
+                editIsha.setText(removeAmPm(snapshot.child("isha").getValue(String.class)));
+                editJuma.setText(removeAmPm(snapshot.child("juma").getValue(String.class)));
             }
 
             @Override
@@ -182,12 +179,14 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
 
     private void savePrayerTimes() {
         Map<String, Object> timeMap = new HashMap<>();
-        timeMap.put("fajr", editFajr.getText().toString());
-        timeMap.put("dhuhr", editDhuhr.getText().toString());
-        timeMap.put("asr", editAsr.getText().toString());
-        timeMap.put("maghrib", editMaghrib.getText().toString());
-        timeMap.put("isha", editIsha.getText().toString());
-        timeMap.put("juma", editJuma.getText().toString());
+
+        // Format and save prayer times with explicit AM/PM
+        timeMap.put("fajr", formatPrayerTime(editFajr.getText().toString(), "AM"));
+        timeMap.put("dhuhr", formatPrayerTime(editDhuhr.getText().toString(), "PM"));
+        timeMap.put("asr", formatPrayerTime(editAsr.getText().toString(), "PM"));
+        timeMap.put("maghrib", formatPrayerTime(editMaghrib.getText().toString(), "PM"));
+        timeMap.put("isha", formatPrayerTime(editIsha.getText().toString(), "PM"));
+        timeMap.put("juma", formatPrayerTime(editJuma.getText().toString(), "PM"));
 
         prayerDbRef.updateChildren(timeMap).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -199,15 +198,91 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
         });
     }
 
-    // New method to load monthly hisab based on spinner selection
+    // --- Updated Helper Method for Prayer Time Formatting ---
+    private String formatPrayerTime(String inputTime, String forceAmPm) {
+        // Expected input format: "HHmm" (e.g., "0550", "1330")
+        if (inputTime == null || inputTime.length() != 4 || !inputTime.matches("\\d{4}")) {
+            return ""; // Return empty string for invalid input
+        }
+
+        SimpleDateFormat inputSdf = new SimpleDateFormat("HHmm", Locale.ENGLISH);
+        SimpleDateFormat outputSdf = new SimpleDateFormat("hh:mm a", Locale.ENGLISH); // 'a' for AM/PM
+
+        try {
+            Date date = inputSdf.parse(inputTime);
+            if (date == null) {
+                return "";
+            }
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+
+            // Get the current AM/PM status of the parsed time
+            int currentHour = calendar.get(Calendar.HOUR_OF_DAY); // 0-23
+
+            // Force AM/PM based on the 'forceAmPm' parameter
+            if ("AM".equals(forceAmPm)) {
+                if (currentHour >= 12 && currentHour != 0) { // If it's PM (12 PM to 11 PM), convert to AM
+                    calendar.add(Calendar.HOUR_OF_DAY, -12);
+                } else if (currentHour == 0) { // If it's 12 AM (midnight), keep it 12 AM
+                    // No change needed, 00:xx is already 12:xx AM
+                }
+            } else if ("PM".equals(forceAmPm)) {
+                if (currentHour >= 0 && currentHour < 12) { // If it's AM (12 AM to 11 AM), convert to PM
+                    if (currentHour != 0) { // Don't add 12 hours to 12 AM (00:xx)
+                        calendar.add(Calendar.HOUR_OF_DAY, 12);
+                    }
+                }
+            }
+            // If currentHour is already 12-23 (PM) and forceAmPm is PM, no change needed.
+
+            return outputSdf.format(calendar.getTime());
+
+        } catch (ParseException e) {
+            Log.e(TAG, "Error parsing prayer time: " + inputTime, e);
+        }
+        return ""; // Fallback for parse errors
+    }
+
+    private String removeAmPm(String timeWithAmPm) {
+        if (timeWithAmPm == null || timeWithAmPm.isEmpty()) {
+            return "";
+        }
+        String cleaned = timeWithAmPm.replace(" AM", "").replace(" PM", "").replace(":", "");
+        if (cleaned.length() == 3) {
+            cleaned = "0" + cleaned;
+        }
+        return cleaned;
+    }
+
+    private void applyPrayerTimeInputFilter(EditText editText) {
+        editText.setFilters(new InputFilter[] { new InputFilter.LengthFilter(4) });
+        editText.setInputType(android.text.InputType.TYPE_CLASS_NUMBER);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String text = s.toString();
+                if (!text.matches("\\d*")) {
+                    s.replace(0, s.length(), text.replaceAll("\\D", ""));
+                }
+            }
+        });
+    }
+    // --- End Updated Helper Method ---
+
+
     private void loadMonthlyHisab() {
         String selectedMonthName = monthSpinner.getSelectedItem().toString();
         String selectedYear = yearSpinner.getSelectedItem().toString();
 
-        // Convert month name to 2-digit number (e.g., "July" -> "07")
         String monthNumber = getMonthNumber(selectedMonthName);
 
-        // Construct the Firebase key as YYYY_MM_MonthName
         String monthYearKey = selectedYear + "_" + monthNumber + "_" + selectedMonthName;
         Log.d(TAG, "Loading monthly hisab for key: " + monthYearKey);
 
@@ -218,7 +293,6 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 Log.d(TAG, "Monthly hisab data received. Exists: " + snapshot.exists());
                 if (snapshot.exists()) {
-                    // Load data into EditText fields
                     edit_monthly_chada.setText(getStringValue(snapshot, "monthly_chada"));
                     edit_first_week.setText(getStringValue(snapshot, "first_week"));
                     edit_second_week.setText(getStringValue(snapshot, "second_week"));
@@ -236,7 +310,6 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
 
                     Toast.makeText(UpdatePrayerTimesActivity.this, "হিসাব লোড হয়েছে: " + selectedMonthName + " " + selectedYear, Toast.LENGTH_SHORT).show();
                 } else {
-                    // Clear all EditText fields if no data exists for the selected month/year
                     clearMonthlyHisabFields();
                     Toast.makeText(UpdatePrayerTimesActivity.this, selectedMonthName + " " + selectedYear + " এর জন্য কোন হিসাব পাওয়া যায়নি।", Toast.LENGTH_SHORT).show();
                 }
@@ -254,18 +327,14 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
         String selectedMonthName = monthSpinner.getSelectedItem().toString();
         String selectedYear = yearSpinner.getSelectedItem().toString();
 
-        // Convert month name to 2-digit number (e.g., "July" -> "07")
         String monthNumber = getMonthNumber(selectedMonthName);
 
-        // Construct the Firebase key as YYYY_MM_MonthName
         String monthYearKey = selectedYear + "_" + monthNumber + "_" + selectedMonthName;
         Log.d(TAG, "Saving monthly hisab to key: " + monthYearKey);
 
-        // Reference to the specific monthly report entry
         DatabaseReference specificMonthlyReportRef = monthlyReportDbRef.child(monthYearKey);
 
         Map<String, Object> data = new HashMap<>();
-        // It's better to save the actual month name and year separately for clarity
         data.put("month_name", selectedMonthName);
         data.put("year", selectedYear);
 
@@ -294,13 +363,11 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
         });
     }
 
-    // Helper method to get string value from DataSnapshot, returns empty string if null
     private String getStringValue(DataSnapshot snapshot, String key) {
         String value = snapshot.child(key).getValue(String.class);
         return value != null ? value : "";
     }
 
-    // Helper method to clear all monthly hisab EditText fields
     private void clearMonthlyHisabFields() {
         edit_monthly_chada.setText("");
         edit_first_week.setText("");
@@ -317,17 +384,15 @@ public class UpdatePrayerTimesActivity extends AppCompatActivity {
         edit_current_balance.setText("");
     }
 
-    // Helper method to convert month name to two-digit number
     private String getMonthNumber(String monthName) {
-        // Use SimpleDateFormat to parse month name and format to number
         try {
-            java.util.Date date = new SimpleDateFormat("MMMM", Locale.ENGLISH).parse(monthName);
+            Date date = new SimpleDateFormat("MMMM", Locale.ENGLISH).parse(monthName);
             if (date != null) {
                 return new SimpleDateFormat("MM", Locale.ENGLISH).format(date);
             }
         } catch (java.text.ParseException e) {
             Log.e(TAG, "Error parsing month name: " + monthName, e);
         }
-        return "00"; // Fallback
+        return "00";
     }
 }

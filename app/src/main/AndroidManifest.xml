@@ -138,6 +138,9 @@
         <activity
             android:name=".Onumodon"
             android:exported="false" />
+        <activity
+            android:name=".FullscreenImage"
+            android:exported="false" />
     </application>
 
 </manifest>

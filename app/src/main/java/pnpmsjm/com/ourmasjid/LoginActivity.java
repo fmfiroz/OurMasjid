@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }
 
+
         // UI উপাদানগুলি ইনিশিয়ালাইজ করুন
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
@@ -89,17 +90,6 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             }
                         });
-            }
-        });
-
-        // রেজিস্ট্রেশন বাটনে ক্লিক লিসেনার সেট করুন
-        registerButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // এখানে আপনি রেজিস্ট্রেশন Activity তে যেতে পারেন
-                // যদি আপনার কোনো রেজিস্ট্রেশন Activity না থাকে, তাহলে এটি বাদ দিতে পারেন
-                // অথবা এই Activity তেই রেজিস্ট্রেশনের লজিক যোগ করতে পারেন
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class)); // একটি RegisterActivity ধরে নেওয়া হচ্ছে
             }
         });
     }

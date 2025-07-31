@@ -550,7 +550,7 @@
                                             android:id="@+id/monthly_chada"
                                             android:layout_marginEnd="10dp"
                                             android:gravity="right"
-                                            android:text="R3C3" android:padding="2dp"/>
+                                            android:text="" android:padding="2dp"/>
                                     </TableRow>
 
                                     <!-- Row 4 -->
@@ -824,6 +824,12 @@
 
 
                             </LinearLayout>
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="40dp"
+                                android:layout_alignParentTop="true"
+                                android:layout_centerHorizontal="true"
+                                android:src="@drawable/shadow" />
 
 
                         </RelativeLayout>
@@ -1012,35 +1018,49 @@
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginBottom="5dp"
                             android:background="@drawable/rounded_corners_white"
                             android:elevation="10dp"
                             android:orientation="vertical"
                             android:paddingLeft="5dp"
-                            android:paddingRight="5dp"
-                            android:paddingBottom="5dp">
+                            android:paddingRight="5dp">
 
                             <LinearLayout
                                 android:id="@+id/gth3"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
+                                android:layout_height="match_parent"
+                                android:layout_centerVertical="true"
                                 android:orientation="horizontal">
                                 <TextView
                                     android:id="@+id/members"
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginLeft="10dp"
-                                    android:layout_marginRight="10dp"
+                                    android:layout_height="match_parent"
                                     android:fontFamily="@font/solaimanlipi"
-                                    android:paddingTop="10dp"
-                                    android:paddingBottom="10dp"
                                     android:text="@string/comiti"
                                     android:textColor="@color/Green_with_80_Black"
-                                    android:textSize="20dp"
+                                    android:textSize="20sp"
                                     android:textAlignment="center"
+                                    android:layout_gravity="center"
                                     android:textStyle="bold" />
                             </LinearLayout>
+
+                            <ImageButton
+                                android:id="@+id/fb_page"
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:adjustViewBounds="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/fb_page"/>
+                            <ImageButton
+                                android:id="@+id/share_app"
+                                android:layout_width="wrap_content"
+                                android:layout_height="50dp"
+                                android:scaleType="fitCenter"
+                                android:adjustViewBounds="true"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/share_app"/>
 
                             <ImageView
                                 android:layout_width="wrap_content"
@@ -1050,6 +1070,8 @@
                                 android:src="@drawable/shadow" />
 
                         </RelativeLayout>
+
+
 
                     </LinearLayout>
                 </ScrollView>
