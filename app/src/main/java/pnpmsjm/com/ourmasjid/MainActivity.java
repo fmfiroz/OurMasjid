@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     // নতুন যোগ করা বাটন:
-    private Button updatePrayerTimesButton; // <-- নতুন বাটন ভ্যারিয়েবল
+    private Button updatePrayerTimesButton; // <-- নতুন বাটন ভ্যারিয়েবল
 
     // Monthly report TextViews
     private TextView month_year; // month_year TextView (must be in your layout)
@@ -158,9 +158,9 @@ public class MainActivity extends AppCompatActivity {
                             String[] parts = monthYearKey.split("_");
                             if (parts.length == 3) {
                                 String monthNameDisplay = parts[2].substring(0, 1).toUpperCase() + parts[2].substring(1);
-                                month_year.setText(monthNameDisplay + " " + parts[0]);
+                                month_year.setText(monthNameDisplay + " " + convertToBengali(parts[0])); // Convert year to Bengali
                             } else {
-                                month_year.setText(monthYearKey.replace("_", " "));
+                                month_year.setText(convertToBengali(monthYearKey.replace("_", " "))); // Convert to Bengali
                             }
                             loadReportData(monthYearKey);
                         }
@@ -195,12 +195,12 @@ public class MainActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             Toast.makeText(MainActivity.this, "লগইন সফল: " + user.getEmail(), Toast.LENGTH_SHORT).show();
-                            // লগইন সফল হলে সরাসরি অন্য অ্যাক্টিভিটিতে না গিয়ে বাটনটি দৃশ্যমান করুন
+                            // লগইন সফল হলে সরাসরি অন্য অ্যাক্টিভিটিতে না গিয়ে বাটনটি দৃশ্যমান করুন
                             loginButton.setVisibility(View.GONE); // লগইন বাটন লুকানো
                             emailInput.setVisibility(View.GONE); // ইমেল ইনপুট লুকানো
                             passwordInput.setVisibility(View.GONE); // পাসওয়ার্ড ইনপুট লুকানো
                             updatePrayerTimesButton.setVisibility(View.VISIBLE); // নতুন বাটন দৃশ্যমান
-                            // এখানে MainActivity শেষ করবেন না, যাতে বাটনটি দেখা যায়
+                            // এখানে MainActivity শেষ করবেন না, যাতে বাটনটি দেখা যায়
                         } else {
                             Toast.makeText(MainActivity.this, "লগইন ব্যর্থ: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             // লগইন ব্যর্থ হলে বাটনটি হাইডই থাকবে
@@ -213,7 +213,7 @@ public class MainActivity extends AppCompatActivity {
         // নতুন বাটনের জন্য OnClickListener সেট করুন
         updatePrayerTimesButton.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, UpdatePrayerTimesActivity.class));
-            // আপনি চাইলে UpdatePrayerTimesActivity তে যাওয়ার পর MainActivity শেষ করতে পারেন
+            // আপনি চাইলে UpdatePrayerTimesActivity তে যাওয়ার পর MainActivity শেষ করতে পারেন
             // finish();
         });
     }
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
         loginButton = findViewById(R.id.loginButton);
-        updatePrayerTimesButton = findViewById(R.id.updatePrayerTimesButton); // <-- নতুন বাটন ইনিশিয়ালাইজ করুন
+        updatePrayerTimesButton = findViewById(R.id.updatePrayerTimesButton); // <-- নতুন বাটন ইনিশিয়ালাইজ করুন
     }
 
     private void setupLinearLayoutClicks() {
@@ -301,13 +301,13 @@ public class MainActivity extends AppCompatActivity {
 
                     int totalIncome = monthlyChada + week1 + week2 + week3 + week4 + danbox;
 
-                    monthly_chada.setText(String.valueOf(monthlyChada));
-                    first_week.setText(String.valueOf(week1));
-                    second_week.setText(String.valueOf(week2));
-                    third_week.setText(String.valueOf(week3));
-                    fourth_week.setText(String.valueOf(week4));
-                    misc_danbox.setText(String.valueOf(danbox));
-                    total_income.setText(String.valueOf(totalIncome));
+                    monthly_chada.setText(formatAmountInBengali(monthlyChada));
+                    first_week.setText(formatAmountInBengali(week1));
+                    second_week.setText(formatAmountInBengali(week2));
+                    third_week.setText(formatAmountInBengali(week3));
+                    fourth_week.setText(formatAmountInBengali(week4));
+                    misc_danbox.setText(formatAmountInBengali(danbox));
+                    total_income.setText(formatAmountInBengali(totalIncome));
 
                     int imamSalary = getInt(snapshot, "imam_salary");
                     int muajjinSalary = getInt(snapshot, "muajjin_salary");
@@ -317,16 +317,18 @@ public class MainActivity extends AppCompatActivity {
                     int totalExpense = imamSalary + muajjinSalary + electricity + miscExpense;
                     int cashInHand = totalIncome - totalExpense;
 
-                    imam_salary.setText(String.valueOf(imamSalary));
-                    muajjin_salary.setText(String.valueOf(muajjinSalary));
-                    electricity_bill.setText(String.valueOf(electricity));
-                    misc_expence.setText(String.valueOf(miscExpense));
-                    total_expence.setText(String.valueOf(totalExpense));
-                    cash_in_hand.setText(String.valueOf(cashInHand));
+                    imam_salary.setText(formatAmountInBengali(imamSalary));
+                    muajjin_salary.setText(formatAmountInBengali(muajjinSalary));
+                    electricity_bill.setText(formatAmountInBengali(electricity));
+                    misc_expence.setText(formatAmountInBengali(miscExpense));
+                    total_expence.setText(formatAmountInBengali(totalExpense));
+                    cash_in_hand.setText(formatAmountInBengali(cashInHand));
 
-                    dev_fund_income.setText(snapshot.child("dev_fund_income").getValue(String.class) != null ? snapshot.child("dev_fund_income").getValue(String.class) : "0");
-                    kollan_fund_income.setText(snapshot.child("kollan_fund_income").getValue(String.class) != null ? snapshot.child("kollan_fund_income").getValue(String.class) : "0");
-                    current_balance.setText(snapshot.child("current_balance").getValue(String.class) != null ? snapshot.child("current_balance").getValue(String.class) : "0");
+                    // For these fields, if they are stored as Strings, you might need to parse them to int first
+                    // if you want to apply the same formatting. Assuming they are numeric, we'll try to parse.
+                    dev_fund_income.setText(formatAmountInBengali(getInt(snapshot, "dev_fund_income")));
+                    kollan_fund_income.setText(formatAmountInBengali(getInt(snapshot, "kollan_fund_income")));
+                    current_balance.setText(formatAmountInBengali(getInt(snapshot, "current_balance")));
 
                 } else {
                     setAllReportTextViewsToZero();
@@ -349,9 +351,21 @@ public class MainActivity extends AppCompatActivity {
             if (value instanceof Long) {
                 return ((Long) value).intValue();
             } else if (value instanceof String) {
-                return Integer.parseInt((String) value);
+                // Try to parse string to int, if it's not a valid number, return 0
+                try {
+                    return Integer.parseInt((String) value);
+                } catch (NumberFormatException e) {
+                    Log.e("ParseError", "NumberFormatException for key: " + key + ", Value: " + value, e);
+                    return 0;
+                }
             } else if (value != null) {
-                return Integer.parseInt(value.toString());
+                // In case it's another numeric type, convert to string and then parse
+                try {
+                    return Integer.parseInt(value.toString());
+                } catch (NumberFormatException e) {
+                    Log.e("ParseError", "NumberFormatException for key: " + key + ", Value: " + value, e);
+                    return 0;
+                }
             } else {
                 return 0;
             }
@@ -361,31 +375,66 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // New method to convert English digits to Bengali digits
+    private String convertToBengali(String number) {
+        if (number == null || number.isEmpty()) {
+            return "";
+        }
+        char[] englishDigits = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+        char[] bengaliDigits = {'০', '১', '২', '৩', '৪', '৫', '৬', '৭', '৮', '৯'};
+
+        StringBuilder bengaliNumber = new StringBuilder();
+        for (char c : number.toCharArray()) {
+            boolean found = false;
+            for (int i = 0; i < englishDigits.length; i++) {
+                if (c == englishDigits[i]) {
+                    bengaliNumber.append(bengaliDigits[i]);
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                bengaliNumber.append(c); // Append non-digit characters as they are
+            }
+        }
+        return bengaliNumber.toString();
+    }
+
+    // New method to format amounts with ".00" and in Bengali
+    private String formatAmountInBengali(int amount) {
+        String formattedAmount = String.format(Locale.US, "%d.00", amount);
+        return convertToBengali(formattedAmount);
+    }
+
     private void setAllReportTextViewsToZero() {
-        monthly_chada.setText("0");
-        first_week.setText("0");
-        second_week.setText("0");
-        third_week.setText("0");
-        fourth_week.setText("0");
-        misc_danbox.setText("0");
-        total_income.setText("0");
-        imam_salary.setText("0");
-        muajjin_salary.setText("0");
-        electricity_bill.setText("0");
-        misc_expence.setText("0");
-        total_expence.setText("0");
-        cash_in_hand.setText("0");
-        dev_fund_income.setText("0");
-        kollan_fund_income.setText("0");
-        current_balance.setText("0");
+        // Use the new formatting method for all zero values as well
+        monthly_chada.setText(formatAmountInBengali(0));
+        first_week.setText(formatAmountInBengali(0));
+        second_week.setText(formatAmountInBengali(0));
+        third_week.setText(formatAmountInBengali(0));
+        fourth_week.setText(formatAmountInBengali(0));
+        misc_danbox.setText(formatAmountInBengali(0));
+        total_income.setText(formatAmountInBengali(0));
+        imam_salary.setText(formatAmountInBengali(0));
+        muajjin_salary.setText(formatAmountInBengali(0));
+        electricity_bill.setText(formatAmountInBengali(0));
+        misc_expence.setText(formatAmountInBengali(0));
+        total_expence.setText(formatAmountInBengali(0));
+        cash_in_hand.setText(formatAmountInBengali(0));
+        dev_fund_income.setText(formatAmountInBengali(0));
+        kollan_fund_income.setText(formatAmountInBengali(0));
+        current_balance.setText(formatAmountInBengali(0));
     }
 
     private void setTimeFromSnapshot(DataSnapshot snapshot, String key, TextView textView, AnalogClockView analogueClockView) {
         String time = snapshot.child(key).getValue(String.class);
         if (time != null) {
-            textView.setText(time);
+            textView.setText(convertToBengali(time)); // Convert prayer times to Bengali too
             if (analogueClockView != null) {
-                analogueClockView.setPrayerTime(time);
+                // Assuming AnalogClockView handles string input, if it expects formatted time,
+                // you might need to adjust its setPrayerTime method or pass the original time.
+                // For now, passing the Bengali formatted time.
+                analogueClockView.setPrayerTime(convertToBengali(time));
             }
         }
     }
