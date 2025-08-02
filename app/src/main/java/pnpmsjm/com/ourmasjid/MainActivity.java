@@ -49,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     // নতুন যোগ করা বাটন:
-    private Button updatePrayerTimesButton; // <-- নতুন বাটন ভ্যারিয়েবল
+    private Button updatePrayerTimesButton;
 
     // Monthly report TextViews
-    private TextView month_year; // month_year TextView (must be in your layout)
+    private TextView month_year;
     private TextView monthly_chada, first_week, second_week, third_week, fourth_week, misc_danbox, total_income;
     private TextView imam_salary, muajjin_salary, electricity_bill, misc_expence, total_expence;
     private TextView cash_in_hand, dev_fund_income, kollan_fund_income, current_balance;
@@ -126,12 +126,31 @@ public class MainActivity extends AppCompatActivity {
         // Setup LinearLayout click listeners
         setupLinearLayoutClicks();
 
+        // --- Persistent Login Logic ---
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            // User is already logged in
+            Toast.makeText(MainActivity.this, "স্বাগতম, " + currentUser.getEmail(), Toast.LENGTH_SHORT).show();
+            // Hide login UI and show the update button
+            emailInput.setVisibility(View.GONE);
+            passwordInput.setVisibility(View.GONE);
+            loginButton.setVisibility(View.GONE);
+            updatePrayerTimesButton.setVisibility(View.VISIBLE);
+        } else {
+            // No user is logged in, show login UI
+            emailInput.setVisibility(View.VISIBLE);
+            passwordInput.setVisibility(View.VISIBLE);
+            loginButton.setVisibility(View.VISIBLE);
+            updatePrayerTimesButton.setVisibility(View.GONE);
+        }
+        // --- End Persistent Login Logic ---
+
+
         // Listen for prayer times changes
         prayerTimesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    // নামাজের সময় ইংরেজিতেই থাকবে, convertToBengali ব্যবহার করা হবে না
                     setTimeFromSnapshot(dataSnapshot, "fajr", fajrTime, analogueFajrTime);
                     setTimeFromSnapshot(dataSnapshot, "dhuhr", dhuhrTime, analogueDhuhrTime);
                     setTimeFromSnapshot(dataSnapshot, "asr", asrTime, analogueAsrTime);
@@ -159,11 +178,9 @@ public class MainActivity extends AppCompatActivity {
                             String[] parts = monthYearKey.split("_");
                             if (parts.length == 3) {
                                 String monthNameDisplay = parts[2].substring(0, 1).toUpperCase() + parts[2].substring(1);
-                                // বছর বাংলায় দেখাবে
-                                month_year.setText(monthNameDisplay + " " + convertToBengali(parts[0]));
+                                month_year.setText(monthNameDisplay + " " + parts[0]);
                             } else {
-                                // যদি ফরম্যাট ভিন্ন হয়, পুরোটাকেই বাংলায় দেখানোর চেষ্টা করবে
-                                month_year.setText(convertToBengali(monthYearKey.replace("_", " ")));
+                                month_year.setText(monthYearKey.replace("_", " "));
                             }
                             loadReportData(monthYearKey);
                         }
@@ -203,7 +220,6 @@ public class MainActivity extends AppCompatActivity {
                             emailInput.setVisibility(View.GONE); // ইমেল ইনপুট লুকানো
                             passwordInput.setVisibility(View.GONE); // পাসওয়ার্ড ইনপুট লুকানো
                             updatePrayerTimesButton.setVisibility(View.VISIBLE); // নতুন বাটন দৃশ্যমান
-                            // এখানে MainActivity শেষ করবেন না, যাতে বাটনটি দেখা যায়
                         } else {
                             Toast.makeText(MainActivity.this, "লগইন ব্যর্থ: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             // লগইন ব্যর্থ হলে বাটনটি হাইডই থাকবে
@@ -216,8 +232,6 @@ public class MainActivity extends AppCompatActivity {
         // নতুন বাটনের জন্য OnClickListener সেট করুন
         updatePrayerTimesButton.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, UpdatePrayerTimesActivity.class));
-            // আপনি চাইলে UpdatePrayerTimesActivity তে যাওয়ার পর MainActivity শেষ করতে পারেন
-            // finish();
         });
     }
 
@@ -258,7 +272,7 @@ public class MainActivity extends AppCompatActivity {
         emailInput = findViewById(R.id.emailInput);
         passwordInput = findViewById(R.id.passwordInput);
         loginButton = findViewById(R.id.loginButton);
-        updatePrayerTimesButton = findViewById(R.id.updatePrayerTimesButton); // <-- নতুন বাটন ইনিশিয়ালাইজ করুন
+        updatePrayerTimesButton = findViewById(R.id.updatePrayerTimesButton);
     }
 
     private void setupLinearLayoutClicks() {
@@ -327,8 +341,6 @@ public class MainActivity extends AppCompatActivity {
                     total_expence.setText(formatAmountInBengali(totalExpense));
                     cash_in_hand.setText(formatAmountInBengali(cashInHand));
 
-                    // For these fields, if they are stored as Strings, you might need to parse them to int first
-                    // if you want to apply the same formatting. Assuming they are numeric, we'll try to parse.
                     dev_fund_income.setText(formatAmountInBengali(getInt(snapshot, "dev_fund_income")));
                     kollan_fund_income.setText(formatAmountInBengali(getInt(snapshot, "kollan_fund_income")));
                     current_balance.setText(formatAmountInBengali(getInt(snapshot, "current_balance")));
@@ -354,7 +366,6 @@ public class MainActivity extends AppCompatActivity {
             if (value instanceof Long) {
                 return ((Long) value).intValue();
             } else if (value instanceof String) {
-                // Try to parse string to int, if it's not a valid number, return 0
                 try {
                     return Integer.parseInt((String) value);
                 } catch (NumberFormatException e) {
@@ -362,7 +373,6 @@ public class MainActivity extends AppCompatActivity {
                     return 0;
                 }
             } else if (value != null) {
-                // In case it's another numeric type, convert to string and then parse
                 try {
                     return Integer.parseInt(value.toString());
                 } catch (NumberFormatException e) {
@@ -378,7 +388,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    // New method to convert English digits to Bengali digits
+    // New method to convert English digits to Bengali digits (kept for other sections if needed)
     private String convertToBengali(String number) {
         if (number == null || number.isEmpty()) {
             return "";
@@ -410,7 +420,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setAllReportTextViewsToZero() {
-        // Use the new formatting method for all zero values as well
         monthly_chada.setText(formatAmountInBengali(0));
         first_week.setText(formatAmountInBengali(0));
         second_week.setText(formatAmountInBengali(0));
@@ -432,7 +441,6 @@ public class MainActivity extends AppCompatActivity {
     private void setTimeFromSnapshot(DataSnapshot snapshot, String key, TextView textView, AnalogClockView analogueClockView) {
         String time = snapshot.child(key).getValue(String.class);
         if (time != null) {
-            // নামাজের সময় ইংরেজিতেই থাকবে
             textView.setText(time);
             if (analogueClockView != null) {
                 analogueClockView.setPrayerTime(time);
