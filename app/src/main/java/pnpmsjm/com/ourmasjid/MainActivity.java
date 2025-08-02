@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
+                    // নামাজের সময় ইংরেজিতেই থাকবে, convertToBengali ব্যবহার করা হবে না
                     setTimeFromSnapshot(dataSnapshot, "fajr", fajrTime, analogueFajrTime);
                     setTimeFromSnapshot(dataSnapshot, "dhuhr", dhuhrTime, analogueDhuhrTime);
                     setTimeFromSnapshot(dataSnapshot, "asr", asrTime, analogueAsrTime);
@@ -158,9 +159,11 @@ public class MainActivity extends AppCompatActivity {
                             String[] parts = monthYearKey.split("_");
                             if (parts.length == 3) {
                                 String monthNameDisplay = parts[2].substring(0, 1).toUpperCase() + parts[2].substring(1);
-                                month_year.setText(monthNameDisplay + " " + convertToBengali(parts[0])); // Convert year to Bengali
+                                // বছর বাংলায় দেখাবে
+                                month_year.setText(monthNameDisplay + " " + convertToBengali(parts[0]));
                             } else {
-                                month_year.setText(convertToBengali(monthYearKey.replace("_", " "))); // Convert to Bengali
+                                // যদি ফরম্যাট ভিন্ন হয়, পুরোটাকেই বাংলায় দেখানোর চেষ্টা করবে
+                                month_year.setText(convertToBengali(monthYearKey.replace("_", " ")));
                             }
                             loadReportData(monthYearKey);
                         }
@@ -272,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
             omorbani1.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Omorbani.class)));
         }
         if (onumodon1 != null) {
-            onumodon1.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Onumodon.class)));
+            onumodon1.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, FullscreenImage.class)));
         }
         if (gth3 != null) {
             gth3.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, Committee.class)));
@@ -429,12 +432,10 @@ public class MainActivity extends AppCompatActivity {
     private void setTimeFromSnapshot(DataSnapshot snapshot, String key, TextView textView, AnalogClockView analogueClockView) {
         String time = snapshot.child(key).getValue(String.class);
         if (time != null) {
-            textView.setText(convertToBengali(time)); // Convert prayer times to Bengali too
+            // নামাজের সময় ইংরেজিতেই থাকবে
+            textView.setText(time);
             if (analogueClockView != null) {
-                // Assuming AnalogClockView handles string input, if it expects formatted time,
-                // you might need to adjust its setPrayerTime method or pass the original time.
-                // For now, passing the Bengali formatted time.
-                analogueClockView.setPrayerTime(convertToBengali(time));
+                analogueClockView.setPrayerTime(time);
             }
         }
     }
